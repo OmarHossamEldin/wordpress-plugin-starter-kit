@@ -1,0 +1,27 @@
+{
+    "name": "hassan/wordpress",
+    "type": "libaray",
+    "keywords": [
+        "plugin",
+        "wordpress"
+    ],
+    "description": "starter kit following mvc pattern for wordpress",
+    "autoload": {
+        "psr-4": {
+            "Wordpress\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "minimum-stability": "dev",
+    "license": "MIT"
+}
