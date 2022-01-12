@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Testing
+Plugin Name: StarterKit
 Plugin URI: http://testing.com
 Description: This is my first plugin! It makes a new admin menu link!
 Version: 1.0.0

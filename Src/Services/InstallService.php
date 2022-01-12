@@ -13,7 +13,7 @@ class InstallService
      * * it's migrate database tables  and create seeders when plugin installed
      */
 
-    public function install()
+    public static function  install()
     {
         flush_rewrite_rules();
         $postsTable = new PostsTable;
@@ -23,7 +23,7 @@ class InstallService
         // $runSeeder->run();
     }
 
-    public function unInstall()
+    public static function unInstall()
     {
         $postsTable = new PostsTable;
         $postsTable->down();

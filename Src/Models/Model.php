@@ -17,7 +17,7 @@ class Model extends Connection
      * table name $table
      */
 
-    protected $primaryKey  = 'kArtikel';
+    protected $primaryKey  = 'id';
     /**
      * colums to insert for access
      */
@@ -70,22 +70,23 @@ class Model extends Connection
 
     public function count(String $column)
     {
-        $query = <<<QUERY
+        $this->query = <<<QUERY
             SELECT COUNT($column) AS count
             FROM $this->table
         QUERY;
-        return $this;
+        $count = $this->db->query($this->query);
+        return $count;
     }
 
     public function paginate($limit = 10, $currentPage = 1)
     {
         $offset = ($currentPage - 1) * $limit;
-        $rows = $this->db->executeQuery($this->query,);
+        $rows = $this->db->query($this->query,);
         $count = count($rows);
         $this->query .= <<<QUERY
             LIMIT $offset, $limit
         QUERY;
-        $rows = $this->db->executeQuery($this->query,);
+        $rows = $this->db->query($this->query,);
         $totalPages = ceil($count / $limit);
         $lastPage = $currentPage <= 1 ? '' : $currentPage - 1;
         $nextPage = $currentPage < $totalPages ? $currentPage + 1 : '';
@@ -114,13 +115,12 @@ class Model extends Connection
         $values['updated_at'] = $date->format('Y-m-d H:i:s');
 
         try {
-            $stmt = $this->db->prepare($this->query);
-            $stmt->execute($values);
+            $rows = $this->db->prepare($this->query, $values);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
 
-        return $stmt;
+        return $rows;
     }
 
     public function update(array $values, int $id)
@@ -141,12 +141,11 @@ class Model extends Connection
         $values['id'] = $id;
 
         try {
-            $stmt = $this->db->prepare($this->query);
-            $stmt->execute($values);
+            $rows = $this->db->prepare($this->query, $values);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-        return $stmt;
+        return $rows;
     }
 
     public function delete(int $id)
@@ -158,8 +157,7 @@ class Model extends Connection
 
         $value['id'] = $id;
         try {
-            $stmt = $this->db->prepare($this->query);
-            $stmt->execute($value);
+            $this->db->prepare($this->query, $value);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -183,9 +181,7 @@ class Model extends Connection
 
     public function get()
     {
-        $stmt = $this->db->prepare($this->query);
-        $stmt->execute();
-        $rows = $stmt->fetchAll();
+        $rows =  $this->db->query($this->query);
         return $rows;
     }
 

@@ -18,7 +18,7 @@ class ValidateInputs extends FilterInputs
                         if ($input) {
                             $input = $input;
                         } else {
-                            Alerts::show('warning', ValidationMessage::get('required'), $key);
+                            ValidationMessage::get('required');
                         }
                         break;
                     case 'nullable':
@@ -30,9 +30,6 @@ class ValidateInputs extends FilterInputs
                 }
             }
         });
-        if ((!!$inputs['jtl_token'])) {
-            unset($inputs['jtl_token']);
-        }
         return $inputs;
     }
 
