@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support;
+namespace Wordpress\Support\Route;
 
 use Wordpress\Exceptions\ClassNotFoundException;
 use Wordpress\Exceptions\MethodNotFoundException;

@@ -2,21 +2,21 @@
 
 namespace Wordpress\Services;
 
-use Wordpress\Support\Route;
+use Wordpress\Support\Route\Route;
 
 class RoutesService
 {
     public function adminRoutes()
     {
         /* routes */
-        Route::post('EventController@create');
-        Route::delete('EventController@destroy');
-        Route::update('EventController@update');
+        Route::post('create', 'EventController@create');
+        Route::delete('destroy', 'EventController@destroy');
+        Route::put('update', 'EventController@update');
     }
 
     public function websiteRoutes()
     {
         /* routes */
-        Route::get('EventController@index');
+        Route::execute('EventController@index');
     }
 }

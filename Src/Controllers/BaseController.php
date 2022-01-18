@@ -2,7 +2,7 @@
 
 namespace Wordpress\Controllers;
 
-use Wordpress\Support\RequestType;
+use Wordpress\Support\Request;
 
 class BaseController
 {
@@ -10,12 +10,12 @@ class BaseController
 
     public function __construct()
     {
-        if(RequestType::get() === 'POST')
+        if(Request::type() === 'post')
         {
             $this->request = array_map(fn($item) => $item, $_POST);
         }
 
-        if(RequestType::get() === 'GET')
+        if(Request::type() === 'get')
         {
             $this->request = array_map(fn($item) => $item, $_GET);
         }
