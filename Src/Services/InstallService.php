@@ -5,7 +5,6 @@ namespace Wordpress\Services;
 use Wordpress\Database\Seeders\DatabaseSeeder;
 use Wordpress\Database\Migrations\PostsTable;
 
-
 class InstallService
 {
 
