@@ -8,9 +8,9 @@ use Wordpress\Exceptions\UndefinedActionException;
 
 class RouteHandler
 {
-    const CONTROLLERS_NAMESPACE = 'Wordpress\Controllers';
+    private const CONTROLLERS_NAMESPACE = 'Wordpress\Controllers';
 
-    public static function call($handler, Object $smarty, object $plugin)
+    public static function call($handler)
     {
         if (is_array($handler)) {
             [$class, $method] = $handler;
@@ -18,7 +18,7 @@ class RouteHandler
             if (class_exists($class)) {
                 $class = new $class;
                 if (method_exists($class, $method)) {
-                    return call_user_func_array([$class, $method], [$smarty, $plugin]);
+                    return call_user_func_array([$class, $method], []);
                 }
                 throw new MethodNotFoundException();
             }
@@ -30,14 +30,14 @@ class RouteHandler
             if (class_exists($class)) {
                 $class = new $class;
                 if (method_exists($class, $method)) {
-                    return call_user_func_array([$class, $method], [$smarty, $plugin]);
+                    return call_user_func_array([$class, $method], []);
                 }
                 throw new MethodNotFoundException();
             }
             throw new ClassNotFoundException();
         }
         if (is_callable($handler)) {
-            return call_user_func_array($handler, [$smarty, $plugin]);
+            return call_user_func_array($handler, []);
         }
         throw new UndefinedActionException();
     }
