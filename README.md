@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- this starter kite inspired by and mvc pattern.
+- this starter kite inspired by laravel & Geo and mvc pattern.
 - it's wrap for Wordpress built in classes.
 - why I started building this kit because of the following:-
   - what I saw in the documentation was not clear enough for any developers whom used to code in modern pattern.
