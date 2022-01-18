@@ -2,6 +2,10 @@
 
 namespace Wordpress\Support;
 
+use Wordpress\Exceptions\ClassNotFoundException;
+use Wordpress\Exceptions\MethodNotFoundException;
+use Wordpress\Exceptions\UndefinedActionException;
+
 class RouteHandler
 {
     const CONTROLLERS_NAMESPACE = 'Wordpress\Controllers';
@@ -16,7 +20,9 @@ class RouteHandler
                 if (method_exists($class, $method)) {
                     return call_user_func_array([$class, $method], [$smarty, $plugin]);
                 }
+                throw new MethodNotFoundException();
             }
+            throw new ClassNotFoundException();
         }
         if (is_string($handler)) {
             [$class, $method] = explode('@', $handler);
@@ -26,10 +32,13 @@ class RouteHandler
                 if (method_exists($class, $method)) {
                     return call_user_func_array([$class, $method], [$smarty, $plugin]);
                 }
+                throw new MethodNotFoundException();
             }
+            throw new ClassNotFoundException();
         }
         if (is_callable($handler)) {
             return call_user_func_array($handler, [$smarty, $plugin]);
         }
+        throw new UndefinedActionException();
     }
 }
