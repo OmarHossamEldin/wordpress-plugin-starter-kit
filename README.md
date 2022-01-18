@@ -65,8 +65,8 @@
 ## Authors
 
 - [Omar Hossam El-Din Kandil](https://github.com/omarhossameldin/)
-- [Ahmed Banawi](https://github.com/Ahmed-banawi)
 - [Mohammed Fathy](https://github.com/dev-fathy)
+- [Ahmed Banawi](https://github.com/Ahmed-banawi)
 
 ## LICENSE
 
