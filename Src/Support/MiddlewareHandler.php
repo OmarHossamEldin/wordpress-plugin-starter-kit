@@ -2,10 +2,13 @@
 
 namespace Wordpress\Support;
 
+use Wordpress\Exceptions\ClassNotFoundException;
+use Wordpress\Exceptions\MethodNotFoundException;
+
 class MiddlewareHandler
 {
-    const MIDDLEWARES_NAMESPACE = 'Wordpress\Middlewares';
-    const METHOD = 'handel';
+    private const MIDDLEWARES_NAMESPACE = 'Wordpress\Middlewares';
+    private const METHOD = 'handle';
 
     public static function call(string $middleware)
     {
@@ -15,7 +18,9 @@ class MiddlewareHandler
             if (class_exists($middleware)) {
                 if (method_exists($middleware, self::METHOD)) {
                     return call_user_func([$middleware, self::METHOD]);
+                    throw new MethodNotFoundException();
                 }
+                throw new ClassNotFoundException();
             }
         }
     }
