@@ -93,10 +93,12 @@ class Route
      * @param [string] $requestType
      * @return RouteHandler
      */
-    public static function resolve(string $route, string $requestType)
+    public static function resolve(string $fetch, string $requestType)
     {
-        $route = explode('&', $route)[0];
-        $action = self::$routes[$route][$requestType] ?? null;
+        $fetch = explode('?', $fetch)[1];
+        $route = explode('=', $fetch)[1];
+
+        $action = self::$routes[$requestType][$route] ?? null;
         if (!$action) {
             throw new RouteNotFoundException();
         }

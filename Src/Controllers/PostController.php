@@ -11,7 +11,6 @@ class PostController extends BaseController
     {
         $post     = new Post;
         $posts    = $post->select('id', 'title', 'body')->get();
-        print_r($posts);
         return $posts;
     }
 
