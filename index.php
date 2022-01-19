@@ -11,13 +11,8 @@ License: MIT
 */
 require_once __DIR__ . '/vendor/autoload.php';
 
-//use Wordpress\Resources\Views\Shortcode;
-
 use Wordpress\Support\Request;
 use Wordpress\Support\Route\Route;
-
-
-// add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 
 
 // activation 
@@ -32,26 +27,17 @@ register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::cla
 
 add_action('admin_menu', function () {
     add_menu_page('tasks', 'tasks', 'manage_options', 'tasks', function () {
-
         Route::get('tasks', 'TasksController@index');
-
-
-
         Route::resolve(Request::uri(), Request::type());
     }, 'dashicons-welcome-write-blog', 110);
 });
 
 
+add_action('wp_ajax_tasks', function () {
+    
+    Route::post('tasks', 'TasksController@store');
+    Route::put('tasks', 'TasksController@update');
+    Route::delete('tasks', 'TasksController@destroy');
 
-add_action('test-test', function () {
-    echo 'test';
-});
-add_filter("plugin_action_links_" . plugin_basename(__FILE__), function ($links) {
-    $settings_link = '<a href="admin.php?page=tasks">Settings</a>';
-    array_push($links, $settings_link);
-    return $links;
-});
-
-add_action('init', function () {
-    register_post_type('To-Do List', ['public' => true, 'label' => 'To-Do-List']);
+    Route::resolve(Request::uri(), Request::type());
 });
