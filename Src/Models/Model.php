@@ -3,7 +3,7 @@
 namespace Wordpress\Models;
 
 use Wordpress\Database\Initialization\Connection;
-
+use Wordpress\Exceptions\DatabaseQueryException;
 
 class Model extends Connection
 {
@@ -28,6 +28,17 @@ class Model extends Connection
      * columns to select
      */
     private $columns = '*';
+
+    /**
+     * timestamp
+     */
+    protected $created_at = 'created_at';
+
+    /**
+     * update timestamp
+     */
+    protected $updated_at = 'updated_at';
+
     /**
      * query will fetch
      */
@@ -74,19 +85,19 @@ class Model extends Connection
             SELECT COUNT($column) AS count
             FROM $this->table
         QUERY;
-        $count = $this->db->query($this->query);
+        $count = $this->db->get_results($this->query);
         return $count;
     }
 
     public function paginate($limit = 10, $currentPage = 1)
     {
         $offset = ($currentPage - 1) * $limit;
-        $rows = $this->db->query($this->query,);
+        $rows = $this->db->get_results($this->query,);
         $count = count($rows);
         $this->query .= <<<QUERY
             LIMIT $offset, $limit
         QUERY;
-        $rows = $this->db->query($this->query,);
+        $rows = $this->db->get_results($this->query,);
         $totalPages = ceil($count / $limit);
         $lastPage = $currentPage <= 1 ? '' : $currentPage - 1;
         $nextPage = $currentPage < $totalPages ? $currentPage + 1 : '';
@@ -101,26 +112,24 @@ class Model extends Connection
 
     public function create(array $values)
     {
+        $this->fillable = [...$this->fillable, ...[$this->created_at, $this->updated_at]];
         $columns = implode(',', $this->fillable);
-        $binds  = array_map(fn ($colum) => $colum = ":$colum", $this->fillable);
+        $binds  = array_map(fn () => '%s', $this->fillable);
         $binds  = implode(',', $binds);
         $this->query = <<<QUERY
-            INSERT INTO $this->table 
-            ($columns,created_at,updated_at) 
-            VALUES ($binds,:created_at,:updated_at)
+            INSERT INTO $this->table
+            ($columns) 
+            VALUES ($binds)
         QUERY;
-
+        date_default_timezone_set("Africa/Cairo");
         $date = new \DateTime();
-        $values['created_at'] = $date->format('Y-m-d H:i:s');
-        $values['updated_at'] = $date->format('Y-m-d H:i:s');
-
-        try {
-            $rows = $this->db->prepare($this->query, $values);
-        } catch (\Exception $e) {
-            return $e->getMessage();
+        $date = $date->format('Y-m-d H:i:s');
+        $values = [...$values, ...[$this->created_at => $date, $this->updated_at => $date]];
+        $result = $this->db->query($this->db->prepare($this->query, $values));
+        if (!$result) {
+            throw new DatabaseQueryException();
         }
-
-        return $rows;
+        return $result;
     }
 
     public function update(array $values, int $id)
@@ -152,16 +161,14 @@ class Model extends Connection
     {
         $this->query = <<<QUERY
             DELETE FROM $this->table
-            WHERE $this->primaryKey=:$this->primaryKey
+            WHERE $this->primaryKey=%d
         QUERY;
 
-        $value['id'] = $id;
         try {
-            $this->db->prepare($this->query, $value);
+            $this->db->query($this->db->prepare($this->query, $id));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-        return $stmt;
     }
 
     public function toSql(): string
@@ -175,13 +182,13 @@ class Model extends Connection
             SELECT $this->columns
             FROM $this->table
         QUERY;
-        $rows = $this->db->query($this->query);
+        $rows = $this->db->get_results($this->query);
         return $rows;
     }
 
     public function get()
     {
-        $rows =  $this->db->query($this->query);
+        $rows =  $this->db->get_results($this->query);
         return $rows;
     }
 
@@ -190,7 +197,7 @@ class Model extends Connection
         $this->query .= <<<QUERY
             LIMIT 1
         QUERY;
-        $rows = $this->db->query($this->query);
+        $rows = $this->db->get_results($this->query);
         return $rows;
     }
 
@@ -224,7 +231,7 @@ class Model extends Connection
          FROM $this->table JOIN $table
         ON  $this->table.$foreign = $table.$primary_key
         QUERY;
-        $rows = $this->db->query($this->query);
+        $rows = $this->db->get_results($this->query);
 
         return $rows;
     }
@@ -247,7 +254,7 @@ class Model extends Connection
          FROM $this->table JOIN $table
         ON  $this->table.$this->primaryKey = $table.$id
         QUERY;
-        $rows = $this->db->query($this->query);
+        $rows = $this->db->get_results($this->query);
 
         return $rows;
     }
