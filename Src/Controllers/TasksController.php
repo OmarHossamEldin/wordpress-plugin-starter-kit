@@ -10,7 +10,7 @@ class TasksController extends BaseController
 {
     public function index()
     {
-        return View::render('InputForm.php');
+        echo View::render('InputForm.php');
     }
 
     public function create()

@@ -8,8 +8,8 @@ class View
 
     public static function render($file)
     {
-        ob_end_flush();
-        include  (string) self::$path . $file;
-        ob_get_clean();
+        ob_start();
+        include self::$path . $file;
+        return (string) ob_get_clean();
     }
 }

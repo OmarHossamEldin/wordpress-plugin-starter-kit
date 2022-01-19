@@ -12,7 +12,5 @@ class Task extends Model
         'task',
         'fromdate',
         'todate'
-        
-        
     ];
 }
