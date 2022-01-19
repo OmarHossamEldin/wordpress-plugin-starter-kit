@@ -1,3 +1,10 @@
+<?php
+
+use Wordpress\Resources\Views\DataSelector;
+
+$dataselect = DataSelector::selectdata();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,39 +31,55 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Items Form</h2>
+                        <center>
+                            <h1>To Do List</h1>
+                        </center>
                     </div>
-                    <p>Record Items To The Database.</p>
-                    <form action="" method="post">
+                    <center>
+                        <h3>Insert Tasks</h3>
+                    </center>
+                    <center>
+                        <? if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) : ?>
+                            <div class="alert alert-danger">
+                                
+                            </div>
+                        <? endif; ?>
+                    </center>
+                    <form action="admin.php?page=taskscreate" method="POST">
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control">
-                            <label>Description</label>
-                            <input type="text" name="text" class="form-control">
+                            <h4>Task Name</h4>
+                            <input type="text" name="task" class="form-control">
+                            <h4>Task Duration</h4>
+                            <label>From :</label>
+                            <input type="date" name="fromdate" class="form-control">
+                            <label>To :</label>
+                            <input type="date" name="todate" class="form-control">
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="submit" value="Add Item">
+                            <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submit" value="Add Task"></center>
+                            <hr>
                         </div><br>
                     </form>
-                    <form action="" method="post">
+                    <form action="" method="GET">
+                        <input type="text" name="page" value="to-do-list" hidden>
                         <input type="text" name="_method" value="DELETE" hidden>
-                        <?php
-                        
-                        ?>
+                        <center><?= $dataselect ?></center>
+
                         <div><br>
-                            <input type="submit" class="btn btn-primary" name="submitr" value="Remove Item">
+                            <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submit" value="Remove Task"></center>
+                            <hr>
                         </div>
                     </form><br>
-                    <form action="" method="post">
+                    <form action="" method="PUT">
                         <div>
                             <label>Update</label>
-                            <?php
-                            
-                            ?>
+                            <input type="hidden" name="_method" hidden>
+                            <?= $dataselect ?>
                             <input type="text" name="name" value="" class="update">
-                            <input type="hidden" name="_method" value="PUT" hidden>
+
                         </div><br>
-                        <input type="submit" class="btn btn-primary" name="submitu" value="Update Item">
+                        <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submitu" value="Update Task"></center>
+                        <hr>
                 </div>
                 </form>
             </div>
@@ -67,4 +90,5 @@
 <script type="text/javascript">
     $(".chosen").chosen();
 </script>
+
 </html>

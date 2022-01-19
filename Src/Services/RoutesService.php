@@ -14,6 +14,11 @@ class RoutesService
         Route::delete('destroy', 'PostController@destroy');
         Route::put('update', 'PostController@update');
 
+        Route::get('request','TasksController@index');
+        Route::post('create', 'TasksController@create');
+        Route::delete('destroy', 'TasksController@destroy');
+        Route::put('update', 'TasksController@update');
+
         Route::resolve(Request::uri(), Request::type());
     }
 
