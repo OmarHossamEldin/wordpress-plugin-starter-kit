@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Tasks Plugin
-Plugin URI: https://github.com/OmarHossamEldin/wordpress-starter-kit
+Plugin URI: https://packagist.org/packages/reneknox/wordpress
 Description: This is plugin designed to help users with their daily activities [it's for testing kit].
 Version: 1.0.0
 Author: OmarHossameldin
