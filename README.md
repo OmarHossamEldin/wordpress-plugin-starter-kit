@@ -1,4 +1,10 @@
 # WordpressStarterKite
+- [Introduction](#introduction)
+- [Prerequisite](#prerequisite)
+- [Directory Structure](#directory-structure)
+- [Guidelines](#guidelines)
+- [Guidelines](#built-with)
+- [Authors](#authors)
 
 ## Introduction
 
@@ -61,7 +67,8 @@
      - will make his models which is refer to the table and columns he need to query on it the model have to extend the model class he can use it on created table by the migration or on existing table of the project.
 - Request directory
   - Here we create request validation rules
-
+## Getting Started
+- composer require reneknox/wordpress 
 ## Built With
 
 - php
