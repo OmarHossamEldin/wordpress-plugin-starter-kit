@@ -22,6 +22,9 @@
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
+    "scripts": {
+	"test": "vendor/bin/phpunit"
+    },
     "minimum-stability": "dev",
     "license": "MIT"
 }
