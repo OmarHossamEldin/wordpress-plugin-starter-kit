@@ -1,5 +1,6 @@
 # WordpressStarterKite
 
+[![PHP Composer](https://github.com/OmarHossamEldin/wordpress-starter-kit/actions/workflows/php.yml/badge.svg?branch=master)](https://github.com/OmarHossamEldin/wordpress-starter-kit/actions/workflows/php.yml)
 - [Introduction](#introduction)
 - [Built With](#built-with)
 - [Prerequisite](#prerequisite)
