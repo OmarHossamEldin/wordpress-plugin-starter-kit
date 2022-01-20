@@ -35,9 +35,12 @@
 │   │   ├───css
 │   │   ├───js
 │   │   └───Views
+│   │       ├───admin
+│   │       └───website
 │   ├───Services
 │   ├───Support
-│   │   └───Route
+│   │   ├───Route
+│   │   └───Template
 │   └───Validations
 └───tests
     └───Unit
