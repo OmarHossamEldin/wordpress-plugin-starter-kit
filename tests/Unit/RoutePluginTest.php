@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Uint;
+namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Wordpress\Support\Route\Route;
@@ -8,7 +8,7 @@ use Wordpress\Support\Route\Route;
 class RoutePluginTest extends TestCase
 {
     /** @test */
-    public function route_componant_success()
+    public function route_component_success()
     {
         Route::get('test', 'TestController@test');
         $output = Route::resolve('url/url?fetch=test', 'get');
