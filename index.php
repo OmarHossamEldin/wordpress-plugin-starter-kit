@@ -9,21 +9,12 @@ Author URI: https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/
 License: MIT
 
 */
+define('PLUGIN_PATH',  plugins_url(plugin_basename(__DIR__)));
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Wordpress\Support\Request;
 use Wordpress\Support\Route\Route;
-
-
-// activation 
-register_activation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'install']);
-
-// deactivation
-register_deactivation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'deactivate']);
-
-//uninstall
-register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'uninstall']);
-
+use Wordpress\Support\Template\Asset;
 
 add_action('admin_menu', function () {
     add_menu_page('tasks', 'tasks', 'manage_options', 'tasks', function () {
@@ -34,10 +25,22 @@ add_action('admin_menu', function () {
 
 
 add_action('wp_ajax_tasks', function () {
-    
+
     Route::post('tasks', 'TasksController@store');
     Route::put('tasks', 'TasksController@update');
     Route::delete('tasks', 'TasksController@destroy');
 
     Route::resolve(Request::uri(), Request::type());
 });
+
+// activation 
+register_activation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'install']);
+
+// deactivation
+register_deactivation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'deactivate']);
+
+//uninstall
+register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'uninstall']);
+
+// register assets
+add_action('admin_enqueue_scripts', fn () => Asset::register_assets());

@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="<?= __DIR__ ?>/../css/jquery-ui.css">
-<link rel="stylesheet" href="<?= __DIR__ ?>/../css/chosen.min.css" />
-<link rel="stylesheet" href="<?= __DIR__ ?>/../css/style.css">
 
 <main>
     <div class="wrapper">
@@ -64,10 +61,4 @@
         </div>
     </div>
 </main>
-<script src="<?= __DIR__ ?>/.."></script>
-<script src="<?= __DIR__ ?>/../js/jquery-ui.min.js"></script>
-<script src="<?= __DIR__ ?>/../js/chosen.jquery.min.js"></script>
 
-<script type="text/javascript" defer>
-    $(".chosen").chosen();
-</script>
