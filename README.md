@@ -1,13 +1,14 @@
 # WordpressStarterKite
+
 - [Introduction](#introduction)
+- [Built With](#built-with)
 - [Prerequisite](#prerequisite)
 - [Directory Structure](#directory-structure)
 - [Guidelines](#guidelines)
-- [Guidelines](#built-with)
+- [Getting Started](#getting-started)
 - [Authors](#authors)
 
 ## Introduction
-
 - this starter kite inspired by laravel & Geo and mvc pattern.
 - it's wrap for Wordpress built in classes.
 - why I started building this kit because of the following:-
@@ -15,8 +16,11 @@
   - if the plugin require a lot of logic it was mess to write every thing index file which isn't clean and would be hard to be maintained by the time.
   - last thing I build it clean and separate as possible based on my knowledge of any one knows to do it better im really open for it.
 
-## Prerequisite
+## Built With
+- php
+- js
 
+## Prerequisite
 1. php >= 8.0
 1. composer
 
@@ -68,11 +72,7 @@
 - Request directory
   - Here we create request validation rules
 ## Getting Started
-- composer require reneknox/wordpress 
-## Built With
-
-- php
-- js
+> composer require reneknox/wordpress 
 
 ## Authors
 
