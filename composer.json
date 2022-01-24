@@ -7,7 +7,13 @@
         "mvc"
     ],
     "description": "starter kit following mvc pattern for wordpress",
-    "license": "MIT",
+    "license": "MIT", 
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
     "autoload": {
         "psr-4": {
             "Wordpress\\": "Src/"
@@ -17,12 +23,6 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    },
-    "require": {
-        "php": "^8.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9"
     },
     "scripts": {
 	    "test": "./vendor/bin/phpunit"
