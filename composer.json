@@ -6,7 +6,8 @@
         "wordpress",
         "mvc"
     ],
-    "description": "starter kit following mvc pattern for wordpress",
+    "description": "starter kit following mvc pattern for wordpress",\
+    "version": "0.1.0",
     "license": "MIT", 
     "require": {
         "php": "^8.0"
