@@ -31,7 +31,7 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "repositories": [
-	      {
+	{
             "type": "vcs",
             "url": "https://github.com/OmarHossamEldin/wordpress-starter-kit"
         }
