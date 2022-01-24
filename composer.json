@@ -32,7 +32,7 @@
     "prefer-stable": true,
     "dist": [
     	{
-       		"type": "vcs",
+       		"type": "zip",
        		"url": "https://github.com/OmarHossamEldin/wordpress-starter-kit" 
     	}
     ]
