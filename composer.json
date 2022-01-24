@@ -29,7 +29,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [
+    "dist": [
     	{
        		"type": "vcs",
        		"url": "https://github.com/OmarHossamEldin/wordpress-starter-kit" 
