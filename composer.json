@@ -32,7 +32,7 @@
     "minimum-stability": "dev",
     "dist": [
     	{
-       		"type": "vcs",
+       		"type": "project",
        		"url": "https://github.com/OmarHossamEldin/wordpress-starter-kit" 
     	}
     ]
