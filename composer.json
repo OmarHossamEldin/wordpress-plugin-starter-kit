@@ -29,7 +29,7 @@
 	    "test": "./vendor/bin/phpunit"
     },
     "prefer-stable": true,
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "repositories": [
 	    {
             "type": "vcs",
