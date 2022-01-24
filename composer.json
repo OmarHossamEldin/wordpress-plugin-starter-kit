@@ -6,6 +6,7 @@
         "wordpress",
         "mvc"
     ],
+    "version": "0.1.0",
     "description": "starter kit following mvc pattern for wordpress",
     "license": "MIT", 
     "require": {
