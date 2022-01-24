@@ -30,10 +30,10 @@
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
-    "dist": [
-    	{
-       		"type": "zip",
-       		"url": "https://github.com/OmarHossamEldin/wordpress-starter-kit" 
-    	}
+    "repositories": [
+	{
+            "type": "vcs",
+            "url": "https://github.com/OmarHossamEldin/wordpress-starter-kit"
+        }
     ]
 }
