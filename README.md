@@ -73,7 +73,7 @@
 - Request directory
   - Here we create request validation rules
 ## Getting Started
-> composer require reneknox/wordpress 
+> composer create-project reneknox/wordpress
 
 ## Authors
 
