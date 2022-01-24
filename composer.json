@@ -1,12 +1,13 @@
 {
     "name": "reneknox/wordpress",
-    "type": "library",
+    "type": "project",
     "keywords": [
         "plugin",
         "wordpress",
         "mvc"
     ],
     "description": "starter kit following mvc pattern for wordpress",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Wordpress\\": "Src/"
@@ -18,7 +19,7 @@
         }
     },
     "require": {
-        "php": "^8.1.0"
+        "php": "^8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
@@ -27,5 +28,5 @@
 	    "test": "./vendor/bin/phpunit"
     },
     "minimum-stability": "dev",
-    "license": "MIT"
+    "prefer-stable": true
 }
