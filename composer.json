@@ -2,7 +2,6 @@
     "name": "reneknox/wordpress",
     "type": "project",
     "homepage": "https://github.com/OmarHossamEldin/wordpress-starter-kit",
-    "versions" : "* dev-master.",
     "keywords": [
         "plugin",
         "wordpress",
@@ -30,7 +29,7 @@
 	    "test": "./vendor/bin/phpunit"
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "repositories": [
 	    {
             "type": "vcs",
