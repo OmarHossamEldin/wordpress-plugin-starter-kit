@@ -1,6 +1,8 @@
 {
     "name": "reneknox/wordpress",
     "type": "project",
+    "homepage": "https://github.com/OmarHossamEldin/wordpress-starter-kit",
+    "versions" : "* dev-master.",
     "keywords": [
         "plugin",
         "wordpress",
@@ -30,9 +32,18 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "repositories": [
-	{
+	    {
             "type": "vcs",
             "url": "https://github.com/OmarHossamEldin/wordpress-starter-kit"
         }
+    ],
+    "authors": [
+        {
+            "name": "Omar Hossam eldin",
+            "email": "okandil273@gmail.com",
+            "homepage": "ttps://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/",
+            "role": "software-engineer"
+        }
     ]
+    
 }
