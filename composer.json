@@ -6,7 +6,7 @@
         "wordpress",
         "mvc"
     ],
-    "description": "starter kit following mvc pattern for wordpress",\
+    "description": "starter kit following mvc pattern for wordpress",
     "version": "0.1.0",
     "license": "MIT", 
     "require": {
@@ -28,12 +28,12 @@
     "scripts": {
 	    "test": "./vendor/bin/phpunit"
     },
-    "minimum-stability": "dev",
     "prefer-stable": true,
-    "dist": [
-    	{
-       		"type": "zip",
-       		"url": "https://github.com/OmarHossamEldin/wordpress-starter-kit" 
-    	}
+    "minimum-stability": "dev",
+    "repositories": [
+	      {
+            "type": "vcs",
+            "url": "https://github.com/OmarHossamEldin/wordpress-starter-kit"
+        }
     ]
 }
