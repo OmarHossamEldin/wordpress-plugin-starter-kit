@@ -4,9 +4,9 @@ namespace Wordpress\Exceptions;
 
 use Wordpress\Exceptions\Debugger;
 
-class RouteNotFoundException extends \Exception
+class InvalidRequestException extends \Exception
 {
-    protected $message = "This route is not found";
+    protected $message = "this request is not found";
     
     public function __construct()
     {
