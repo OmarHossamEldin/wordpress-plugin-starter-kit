@@ -2,16 +2,15 @@
 
 namespace Wordpress\Middlewares;
 
-use Wordpress\Helpers\Header;
 use Wordpress\Helpers\Redirect;
+use Wordpress\Support\Facades\Http\Header;
 
-class VerifyAjaxRequest 
+class VerifyAjaxRequest
 {
-    public static function handel()
+    public static function handle()
     {
-        if(Header::checkHeaderContain('Content-Type', 'application/json') === false)
-        {
+        if (!(Header::has('Content-Type') && Header::get('Content-Type') === 'application/json')) {
             Redirect::to('/404');
         }
-    }
+    }     
 }
