@@ -1,30 +1,34 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\Support\Debug;
 
-use Plugin\JtlShopPluginStarterKit\Src\Support\Facades\Filesystem\Directory;
-use Carbon\Carbon;
+use Wordpress\Support\Facades\Filesystem\Directory;
+use Wordpress\Support\DateTime\WpCarbon;
 
 class Debugger
 {
-    private object $directory;
+    private Directory $directory;
+    private WpCarbon $wpCarbon;
 
     public function __construct()
     {
         $this->directory = new Directory();
+        $this->wpCarbon = new WpCarbon();
     }
-    public static function die_and_dump($variable): void
+    public static function die_and_dump(...$variables): void
     {
-        echo '<pre>';
-        var_dump($variable);
-        echo '<pre>';
+        foreach ($variables as $variable) {
+            echo '<pre>';
+            var_dump($variable);
+            echo '<pre>';
+        }
         exit;
     }
 
     public function log($text): void
     {
-        $today = Carbon::today()->toDateString();
-        $filename = "{$this->directory->pluginRoot}/Logs/{$today}.log";
+        $today = $this->wpCarbon->format('Y-m-d');
+        $filename = "{$this->directory->logsRoot}/{$today}.log";
         if (file_exists($filename)) {
             $data = file_get_contents($filename);
             if (!is_array($text)) {
@@ -46,7 +50,7 @@ class Debugger
 
     private function convert_memory_usage($size): string
     {
-        $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
+        $unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
         return round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 }
