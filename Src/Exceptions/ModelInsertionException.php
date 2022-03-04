@@ -4,10 +4,10 @@ namespace Wordpress\Exceptions;
 
 use Wordpress\Support\Debug\Debugger;
 
-class UnsupportedAuthenticationType extends \Exception
+class ModelInsertionException extends \Exception
 {
-    protected $message = "Unsupported Authentication Type";
-    
+    protected $message = 'insert values should be identical with model columns';
+
     public function __construct()
     {
         $debugger = new Debugger();

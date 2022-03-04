@@ -2,7 +2,7 @@
 
 namespace Wordpress\Exceptions;
 
-use Wordpress\Exceptions\Debugger;
+use Wordpress\Support\Debug\Debugger;
 
 class RouteNotFoundException extends \Exception
 {
