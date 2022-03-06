@@ -13,13 +13,22 @@ class InitializationService
      */
     public static function  install()
     {
+        // move template
+
+        // activate template
+
+        // seed plugin pages with it's content
+
+        // make directory for uploads
+
+        // create tables
         flush_rewrite_rules();
         $postsTable = new PostsTable();
         $postsTable->up();
 
+        // seed testing data
         $runSeeder = new DatabaseSeeder();
         $runSeeder->run();
-        
     }
 
     /**
@@ -35,6 +44,15 @@ class InitializationService
      */
     public static function uninstall()
     {
+        // deactivate template
+
+        // remove template
+
+        // remove pages
+
+        // remove upload folder
+
+        // remove tables
         $postsTable = new PostsTable();
         $postsTable->down();
     }

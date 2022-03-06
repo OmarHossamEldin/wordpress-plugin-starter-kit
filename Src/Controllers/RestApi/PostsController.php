@@ -13,7 +13,7 @@ class PostsController
     public function index()
     {
         $post = new Post();
-        $posts = [1, 2];
+        $posts = $post->all();
         return Response::json([
             'message' => 'Posts Retrieved Successfully.',
             'posts' => $posts

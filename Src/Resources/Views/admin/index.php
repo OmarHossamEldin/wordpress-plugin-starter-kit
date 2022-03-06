@@ -1,64 +1,25 @@
-
-<main>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <center>
-                            <h1>To Do List</h1>
-
-                        </center>
-                    </div>
-                    <center>
-                        <h3>Insert Tasks</h3>
-                    </center>
-                    <center>
-                        <? if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) : ?>
-                            <div class="alert alert-danger">
-
-                            </div>
-                        <? endif; ?>
-                    </center>
-                    <form action="admin.php?page=taskscreate" method="POST">
-                        <div class="form-group">
-                            <h4>Task Name</h4>
-                            <input type="text" name="task" class="form-control">
-                            <h4>Task Duration</h4>
-                            <label>From :</label>
-                            <input type="date" name="fromdate" class="form-control">
-                            <label>To :</label>
-                            <input type="date" name="todate" class="form-control">
-                        </div>
-                        <div>
-                            <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submit" value="Add Task"></center>
-                            <hr>
-                        </div><br>
-                    </form>
-                    <form action="" method="GET">
-                        <input type="text" name="page" value="to-do-list" hidden>
-                        <input type="text" name="_method" value="DELETE" hidden>
-                        <center><?= $test ?></center>
-
-                        <div><br>
-                            <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submit" value="Remove Task"></center>
-                            <hr>
-                        </div>
-                    </form><br>
-                    <form action="" method="PUT">
-                        <div>
-                            <label>Update</label>
-                            <input type="hidden" name="_method" hidden>
-                            <?= $test ?>
-                            <input type="text" name="name" value="" class="update">
-
-                        </div><br>
-                        <center><input style="width:150px;" type="submit" class="btn btn-primary" name="submitu" value="Update Task"></center>
-                        <hr>
-                </div>
-                </form>
+<section class="blog-insert-data">
+    <div class="d-flex justify-content-around">
+        <form class="">
+            <div class="form-group d-flex justify-content-center">
+                <h3>Create Posts</h3>
             </div>
-        </div>
+            <div class="form-group">
+                <label class="form-label">Title : </label>
+                <input type="text" name="task" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Body :</label>
+                <textarea type="date" name="body" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Image :</label>
+                <input type="file" name="image_path" class="form-control">
+            </div>
+            <div class="mt-4">
+                <input type="submit" class="form-control btn btn-primary" name="submit" value="Add Task">
+            </div>
+        </form>
     </div>
-</main>
-
+</section>
+<hr>

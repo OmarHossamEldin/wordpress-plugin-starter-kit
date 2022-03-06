@@ -3,6 +3,7 @@
 namespace Wordpress\Support\Facades\Router;
 
 use Wordpress\Exceptions\RouteNotFoundException;
+use Wordpress\Support\Facades\Http\Request;
 
 class Route
 {
@@ -13,6 +14,8 @@ class Route
      */
     private static array $routes = [];
 
+    private static string $namespace = 'blog/v1/';
+
     /**
      * get request
      *
@@ -20,7 +23,7 @@ class Route
      * @param  $action
      * @return void
      */
-    public static function get($route, $action): void
+    public static function get(string $route, $action): void
     {
         self::register($route, 'GET', $action);
     }
@@ -32,7 +35,7 @@ class Route
      * @param  $action
      * @return void
      */
-    public static function post($route, $action): void
+    public static function post(string $route, $action): void
     {
         self::register($route, 'POST', $action);
     }
@@ -44,7 +47,7 @@ class Route
      * @param  $action
      * @return void
      */
-    public static function put($route, $action): void
+    public static function put(string $route, $action): void
     {
         self::register($route, 'PUT', $action);
     }
@@ -56,7 +59,7 @@ class Route
      * @param  $action
      * @return void
      */
-    public static function patch($route, $action): void
+    public static function patch(string $route, $action): void
     {
         self::register($route, 'PATCH', $action);
     }
@@ -68,7 +71,7 @@ class Route
      * @param  $action
      * @return void
      */
-    public static function delete($route, $action): void
+    public static function delete(string $route, $action): void
     {
         self::register($route, 'DELETE', $action);
     }
@@ -93,16 +96,75 @@ class Route
      * @param [string] $Request
      * @return RouteHandler
      */
-    public static function resolve(string $fetch, string $requestType)
+    public static function resolveApi(string $route, string $requestType)
     {
-        $fetch = explode('?', $fetch)[1];
-        $route = explode('=', $fetch)[1];
+        $baseUrl = '/wordpress/wp-json/';
+        $route = implode('', explode($baseUrl, $route));
+
         $action = self::$routes[$requestType][$route] ?? null;
 
         if (!$action) {
-            throw new RouteNotFoundException();
+            $action = self::get_action($requestType, $route);
+
+            if ($action === false) {
+                throw new RouteNotFoundException();
+            }
         }
-        return RouteHandler::call($action);
+        $namespace = substr($route, 0, strlen(self::$namespace));
+        $route = explode($namespace, $route)[1];
+        register_rest_route($namespace, $route, [
+            'methods' => $requestType,
+            'callback' => RouteHandler::call($action)
+        ]);
+    }
+
+    public static function get_action(...$action)
+    {
+        [$requestType, $route] = $action;
+
+        // get the request uri
+        $uri = $route;
+
+        // trim slashes from request uri
+        $uri = trim($uri, '/');
+        // get all routes for request type
+        $routes = self::$routes[$requestType] ?? [];
+
+        //route params 
+        $routeParams = false;
+
+        foreach ($routes as $route => $action) {
+            // trim slashes for registered routes
+            $route = trim($route, '/');
+            $routeNames = [];
+
+            if (!$route) {
+                continue;
+            }
+            // find all route names from route  and save it in $routeNames 
+            if (preg_match_all('/\{(\w+)(:[^}]+)?}/', $route, $matches)) {
+                $routeNames = $matches[1];
+            }
+            // convert route name intor regex pattern
+            $routeRegex = "@^" . preg_replace_callback(
+                '/\{(\w+)(:[^}]+)?}/',
+                fn ($match) => isset($match[2]) ? "({$match[2]})" : '(\w+)',
+                $route
+            ) . "$@";
+
+            // test and match current route against $routeRegex
+            if (preg_match_all($routeRegex, $uri, $valueMatches)) {
+                $values = [];
+                for ($i = 1; $i < count($valueMatches); $i++) {
+                    $values[] = $valueMatches[$i][0];
+                }
+                $routeParams = array_combine($routeNames, $values);
+                $request = new Request();
+                $request->set_route_params($routeParams);
+                return $action;
+            }
+        }
+        return false;
     }
 
     public static function execute($controllerMethod)

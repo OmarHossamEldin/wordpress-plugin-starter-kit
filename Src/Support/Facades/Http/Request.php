@@ -2,11 +2,11 @@
 
 namespace Wordpress\Support\Facades\Http;
 
-use Wordpress\Support\Debug\Debugger;
-
 class Request
 {
     private static array $data = [];
+
+    private static array $routeParams = [];
 
     public function __construct()
     {
@@ -25,13 +25,13 @@ class Request
             $data = json_decode($data, true);
             if ((is_array($data)) && (count($data) > 0)) {
                 foreach ($data as $key => $item) {
-                    self::$data[$key] = filter_var($item,  FILTER_SANITIZE_SPECIAL_CHARS  );
+                    self::$data[$key] = filter_var($item,  FILTER_SANITIZE_SPECIAL_CHARS);
                 }
             }
         }
     }
 
-    public static function type()
+    public static function type(): string
     {
         if (isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
             return strtoupper($_POST['_method']);
@@ -45,7 +45,7 @@ class Request
         return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
-    public static function uri()
+    public static function uri(): string
     {
         return $_SERVER['REQUEST_URI'];
     }
@@ -55,10 +55,21 @@ class Request
         return self::$data;
     }
 
-    public function unset(...$elements)
+    public function unset(...$elements): void
     {
         foreach ($elements as $element) {
             unset(self::$data[$element]);
         }
+    }
+
+    public function set_route_params($params): self
+    {
+        self::$routeParams = $params;
+        return $this;
+    }
+
+    public function get_route_params(): array
+    {
+        return self::$routeParams;
     }
 }

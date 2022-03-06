@@ -6,7 +6,7 @@ class RouteHandler
 {
     private const CONTROLLERS_NAMESPACE = 'Wordpress\\Controllers\\';
 
-    public static function call($handler)
+    public static function call($handler, ?array $variableParams = null)
     {
         if (is_array($handler)) {
             [$class, $method] = $handler;
@@ -16,6 +16,11 @@ class RouteHandler
                 $paramsHandler = new ParamsHandler($class);
                 if (method_exists($class, $method)) {
                     $params = $paramsHandler->get_method_params($method);
+                    if (!!$variableParams) {
+                        foreach ($variableParams as $param) {
+                            $params[] = $param;
+                        }
+                    }
                     return call_user_func_array([$class, $method], $params);
                 }
             }
@@ -28,6 +33,11 @@ class RouteHandler
                 $paramsHandler = new ParamsHandler($class);
                 if (method_exists($class, $method)) {
                     $params = $paramsHandler->get_method_params($method);
+                    if (!!$variableParams) {
+                        foreach ($variableParams as $param) {
+                            $params[] = $param;
+                        }
+                    }
                     return call_user_func_array([$class, $method], $params);
                 }
             }
