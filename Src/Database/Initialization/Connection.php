@@ -4,9 +4,6 @@ namespace Wordpress\Database\Initialization;
 
 class Connection
 {
-    /**
-     * holds database connection
-     */
     protected $db;
 
     public function __construct()
@@ -14,8 +11,24 @@ class Connection
         $this->db = $GLOBALS['wpdb'];
     }
 
-    public function getDb()
+    /**
+     * get database connection
+     *
+     * @return object
+     */
+    public function getDb(): object
     {
         return $this->db;
+    }
+
+    /**
+     * used for debugging query
+     *
+     * @return boolean
+     */
+    public function show_error_mode(): bool
+    {
+        $this->db->show_errors();
+        return true;
     }
 }

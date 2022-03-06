@@ -2,20 +2,27 @@
 
 namespace Wordpress\Helpers;
 
+use Wordpress\Support\Server\Server;
+
 class Redirect
 {
-    protected $previous_url;
     public static function to($url)
     {
         header('Location:' . $url);
-        exit();
+        exit;
     }
 
     public static function back()
     {
+        $server = new Server();
+        header("Location:$server->previousUrl");
+        exit;
+    }
 
-        $previous_url = $_SERVER['HTTP_REFERER'];
-        header('Location:' . $previous_url);
-        exit();
+    public static function homeWith($url)
+    {
+        $server = new Server(); 
+        header("Location:$server->homeUrl $url");
+        exit;
     }
 }

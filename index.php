@@ -1,37 +1,19 @@
 <?php
 /*
-Plugin Name: Tasks Plugin
-Plugin URI: https://packagist.org/packages/reneknox/wordpress
-Description: This is plugin designed to help users with their daily activities [it's for testing kit].
+Plugin Name: Posts Plugin
+Description: starter kit help people create plugin in well structured code using mvc pattern and autoload unit testing and so on to help people and teams build scalable plugins provided with plugin default theme will be exported and activated when plugin installed providing bootstrap and wrap class for fetch to make it easy to handle all process via rest api with the back end and jquery as well and I encourage you to use pure js after es6 syntax js became way more easy so you don't have to use jquery
 Version: 1.0.0
 Author: OmarHossameldin
 Author URI: https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/
+Plugin URI: https://packagist.org/packages/reneknox/wordpress
 License: MIT
-
 */
 define('PLUGIN_PATH',  plugins_url(plugin_basename(__DIR__)));
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Wordpress\Support\Request;
-use Wordpress\Support\Route\Route;
-use Wordpress\Support\Template\Asset;
+use Wordpress\Services\AdminService;
+use Wordpress\Services\RoutingService;
 
-add_action('admin_menu', function () {
-    add_menu_page('tasks', 'tasks', 'manage_options', 'tasks', function () {
-        Route::get('tasks', 'TasksController@index');
-        Route::resolve(Request::uri(), Request::type());
-    }, 'dashicons-welcome-write-blog', 110);
-});
-
-
-add_action('wp_ajax_tasks', function () {
-
-    Route::post('tasks', 'TasksController@store');
-    Route::put('tasks', 'TasksController@update');
-    Route::delete('tasks', 'TasksController@destroy');
-
-    Route::resolve(Request::uri(), Request::type());
-});
 
 // activation 
 register_activation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'install']);
@@ -42,5 +24,10 @@ register_deactivation_hook(__FILE__, [Wordpress\Services\InitializationService::
 //uninstall
 register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'uninstall']);
 
-// register assets
-add_action('admin_enqueue_scripts', fn () => Asset::register_assets());
+
+
+// routing service initialize
+RoutingService::Initialize();
+
+// admin views service initialize
+AdminService::Initialize();

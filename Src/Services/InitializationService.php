@@ -2,7 +2,8 @@
 
 namespace Wordpress\Services;
 
-use Wordpress\Database\Migrations\TasksTable;
+use Wordpress\Database\Seeders\DatabaseSeeder;
+use Wordpress\Database\Migrations\PostsTable;
 
 class InitializationService
 {
@@ -10,44 +11,49 @@ class InitializationService
     /**
      * * it's migrate database tables  and create seeders when plugin installed
      */
-
     public static function  install()
     {
-        flush_rewrite_rules();
-        $tasksTable = new TasksTable;
-        $tasksTable->up();
+        // move template
 
-        // $post = new WpPost;
-        // $post->create(['post_title'=>'post',
-        // 'post_content'=>'post']);
+        // activate template
+
+        // seed plugin pages with it's content
+
+        // make directory for uploads
+
+        // create tables
+        flush_rewrite_rules();
+        $postsTable = new PostsTable();
+        $postsTable->up();
+
+        // seed testing data
+        $runSeeder = new DatabaseSeeder();
+        $runSeeder->run();
     }
 
     /**
      * This function deactivate the plugin
      */
     public static function deactivate()
-	{
-		flush_rewrite_rules();
-	}
+    {
+        flush_rewrite_rules();
+    }
 
-        // $runSeeder = new DatabaseSeeder;
-        // $runSeeder->run();
-    
     /**
      * This function to uninstall the plugin
      */
     public static function uninstall()
     {
-        $tasksTable = new TasksTable;
-        $tasksTable->down();
+        // deactivate template
+
+        // remove template
+
+        // remove pages
+
+        // remove upload folder
+
+        // remove tables
+        $postsTable = new PostsTable();
+        $postsTable->down();
     }
-
-    
-
-
 }
-
-
-// $wpdb->query( "DELETE FROM wp_posts WHERE post_type = 'Items'");
-// $wpdb->query( "DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id From wp_posts)");
-// $wpdb->query( "DELETE FROM wp_term_relationships WHERE object_id NOT IN (SELECT id From wp_posts)");

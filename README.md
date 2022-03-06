@@ -10,6 +10,7 @@
 - [Authors](#authors)
 
 ## Introduction
+
 - this starter kite inspired by laravel & Geo and mvc pattern.
 - it's wrap for Wordpress built in classes.
 - why I started building this kit because of the following:-
@@ -18,18 +19,26 @@
   - last thing I build it clean and separate as possible based on my knowledge of any one knows to do it better im really open for it.
 
 ## Built With
+
 - php
 - js
 
 ## Prerequisite
+
 1. php >= 8.0
 1. composer
 
 ## Directory Structure
 
 ```
+
+├───PostsThemeTemplate
 ├───Src
+│   ├───Cli
+│   │   ├───App
+│   │   └───Commands
 │   ├───Controllers
+│   │   └───RestApi
 │   ├───Database
 │   │   ├───Initialization
 │   │   ├───Migrations
@@ -42,18 +51,33 @@
 │   ├───Middlewares
 │   ├───Models
 │   ├───Requests
+│   │   └───Post
 │   ├───Resources
 │   │   ├───css
 │   │   ├───js
 │   │   └───Views
-│   │       ├───admin
-│   │       └───website
+│   │       └───admin
 │   ├───Services
-│   ├───Support
-│   │   ├───Route
-│   │   └───Template
-│   └───Validations
-└───tests
+│   ├───Storage
+│   │   ├───Logs
+│   │   └───tokens
+│   └───Support
+│       ├───DateTime
+│       ├───Debug
+│       └───Facades
+│           ├───Authentication
+│           ├───Faker
+│           ├───Filesystem
+│           ├───Http
+│           ├───Localization
+│           ├───Router
+│           ├───Server
+│           ├───Template
+│           ├───Traits
+│           └───Validations
+├───tests
+    ├───Cli
+    │   └───Commands
     └───Unit
 ```
 
@@ -72,7 +96,9 @@
      - will make his models which is refer to the table and columns he need to query on it the model have to extend the model class he can use it on created table by the migration or on existing table of the project.
 - Request directory
   - Here we create request validation rules
+
 ## Getting Started
+
 > composer create-project -s dev reneknox/wordpress
 
 ## Authors
@@ -80,4 +106,3 @@
 - [Omar Hossam El-Din Kandil](https://github.com/omarhossameldin/)
 - [Mohammed Fathy](https://github.com/dev-fathy)
 - [Ahmed Banawi](https://github.com/Ahmed-banawi)
-

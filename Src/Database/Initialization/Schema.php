@@ -2,29 +2,30 @@
 
 namespace Wordpress\Database\Initialization;
 
-use Wordpress\Database\Initialization\Connection;
-
-class Schema 
+class Schema extends Connection
 {
-    public static function create($table, $engine = 'ENGINE=InnoDB COLLATE utf8_general_ci')
+    private static function get_db_connect(): Connection
     {
-        $tableName = $table->getTableName();
-        $columns = $table->columnsToString();
-        $query = <<<QUERY
-            CREATE TABLE IF NOT EXISTS $tableName 
-                ($columns) $engine
-        QUERY;
-        $connection = new Connection;
-        try {
-            $connection->getDb()->query($query);
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        $connection = new Connection();
+        return $connection;
     }
 
-    public static function dropIfExistsdrop(String $tableName)
+    public static function create($tableName, callable $callable, $engine = 'ENGINE=InnoDB COLLATE utf8_general_ci')
     {
-        $connection = new Connection;
-        $connection->getDb()->query("DROP TABLE IF EXISTS $tableName");
+        $table = new Table($tableName, $engine);
+        call_user_func($callable, $table);
+        $tableName = $table->get_table_name();
+        $columns = $table->columns_to_string();
+        $query = <<<QUERY
+            CREATE TABLE IF NOT EXISTS $tableName
+                ($columns) $engine
+        QUERY;
+
+        self::get_db_connect()->db->query($query);
+    }
+
+    public static function dropIfExists(String $tableName)
+    {
+        self::get_db_connect()->db->query("DROP TABLE IF EXISTS $tableName");
     }
 }

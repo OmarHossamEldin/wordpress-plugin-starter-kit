@@ -3,16 +3,14 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Wordpress\Support\Route\Route;
+use Wordpress\Support\Facades\Router\Route;
 
 class RoutePluginTest extends TestCase
 {
     /** @test */
     public function route_component_success()
     {
-        Route::get('test', 'TestController@test');
-        $output = Route::resolve('url/url?fetch=test', 'get');
-
+        $output = Route::execute('TestController@test');
         $this->assertEquals($output, 'test');
     }
 }
