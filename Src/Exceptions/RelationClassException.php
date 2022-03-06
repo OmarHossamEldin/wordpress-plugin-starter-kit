@@ -4,9 +4,9 @@ namespace Wordpress\Exceptions;
 
 use Wordpress\Support\Debug\Debugger;
 
-class RouteNotFoundException extends \Exception
+class RelationClassException extends \Exception
 {
-    protected $message = "This route is not found";
+    protected $message = "Relation Class Exception";
     
     public function __construct()
     {
