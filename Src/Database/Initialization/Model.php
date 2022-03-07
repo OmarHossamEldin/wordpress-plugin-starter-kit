@@ -159,12 +159,11 @@ abstract class Model extends Connection
 
     public function update(array $values, array $conditions)
     {
-        // if (!!strpos($this->table, 'wp_') === false) {
-        //     $wpCarbon = new WpCarbon();
-        //     $date = $wpCarbon->format('Y-m-d H:i:s');
-        //     // $values['updated_at'] = $date;
-        // }
-        $this->show_error_mode();
+        if (!!strpos($this->table, 'wp_') === false) {
+            $wpCarbon = new WpCarbon();
+            $date = $wpCarbon->format('Y-m-d H:i:s');
+            $values['updated_at'] = $date;
+        }
         $this->db->update($this->table, $values, $conditions);
         Debugger::die_and_dump($this->show_error_mode());
     }
