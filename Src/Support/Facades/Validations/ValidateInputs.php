@@ -24,10 +24,10 @@ class ValidateInputs
             if ($arrayValidator->array_keys_exists($key) !== false) {
                 switch ($rule) {
                     case 'required':
-                        !!trim($this->inputs[$key]) ? $this->inputs[$key] = $this->inputs[$key] : $this->errors[$key] = Translate::translate('validations', $rule);
+                        isset($this->inputs[$key]) && !empty($this->inputs[$key]) ? $this->inputs[$key] = $this->inputs[$key] : $this->errors[$key] = Translate::translate('validations', $rule);
                         break;
                     case 'nullable':
-                        $this->inputs[$key] = $this->inputs[$key] === '' ? $this->inputs[$key] : $this->inputs[$key];
+                        $this->inputs[$key] = isset($this->inputs[$key]) ? $this->inputs[$key] : $this->inputs[$key];
                         break;
                     default:
                         throw new UnsupportedValidationRuleException();
