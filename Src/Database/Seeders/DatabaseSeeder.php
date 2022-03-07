@@ -7,7 +7,7 @@ class DatabaseSeeder
 {
     public function run()
     {
-        $postSeeder = new PostsSeeder();
-        $postSeeder->create();
+        $postTableSeeder = new PostsTableSeeder();
+        $postTableSeeder->create();
     }
 }

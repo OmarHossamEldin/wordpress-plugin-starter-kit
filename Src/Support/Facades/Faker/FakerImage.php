@@ -2,27 +2,26 @@
 
 namespace Wordpress\Support\Facades\Faker;
 
-use Wordpress\Support\Facades\Filesystem\Directory;
+use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
 
 class FakerImage
 {
-    private Directory $directory;
+    private DirectoryComposer $directoryComposer;
+    private DirectoryMaker $directoryMaker;
 
     public function __construct()
     {
-        $this->directory = new Directory();
+        $this->directoryComposer = new DirectoryComposer();
+        $this->directoryMaker = new DirectoryMaker();
     }
 
     public function fake_image($folder, $image)
     {
-        $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/mediafiles';
+        $directory = $this->directoryComposer->uploadPath['basedir'] . '/' . $this->directoryComposer::PLUGIN_NAME_DIR . '/' . $folder . '/';
+        $this->directoryMaker->make_directory($directory);
 
-        $dirname = $uploadPath . '/' . $folder . '/';
-        if (!file_exists($dirname)) {
-            mkdir($uploadPath . '/' . $folder . '/', 0777);
-        }
-
-        $imagePath = $dirname . $image;
+        $imagePath = $directory . $image;
 
         $fp = fopen($imagePath, 'w+');
         $ch = curl_init('https://picsum.photos/200/300');
