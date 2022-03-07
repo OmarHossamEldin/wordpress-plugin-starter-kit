@@ -4,13 +4,13 @@ namespace Wordpress\Support\Facades\Faker;
 
 class Faker
 {
-    public ImageFaker $imageFaker;
+    public FakerImage $fakerImage;
 
-    public StringFaker $stringFaker;
+    public FakerString $fakerString;
 
     public function __construct()
     {
-        $this->imageFaker = new ImageFaker();
-        $this->stringFaker = new StringFaker();
+        $this->fakerImage = new FakerImage();
+        $this->fakerString = new FakerString();
     }
 }

@@ -4,7 +4,7 @@ namespace Wordpress\Support\Facades\Faker;
 
 use Wordpress\Support\Facades\Filesystem\Directory;
 
-class ImageFaker
+class FakerImage
 {
     private Directory $directory;
 
@@ -13,7 +13,7 @@ class ImageFaker
         $this->directory = new Directory();
     }
 
-    public function fakerImage($folder, $image)
+    public function fake_image($folder, $image)
     {
         $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/mediafiles';
 

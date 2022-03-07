@@ -2,7 +2,7 @@
 
 namespace Wordpress\Support\Facades\Faker;
 
-class StringFaker
+class FakerString
 {
     public function random_string(int $length)
     {
