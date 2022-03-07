@@ -8,12 +8,10 @@ Author URI: https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/
 Plugin URI: https://packagist.org/packages/reneknox/wordpress
 License: MIT
 */
-define('PLUGIN_PATH',  plugins_url(plugin_basename(__DIR__)));
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . './vendor/autoload.php';
 
 use Wordpress\Services\AdminService;
 use Wordpress\Services\RoutingService;
-
 
 // activation 
 register_activation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'install']);
@@ -27,7 +25,7 @@ register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::cla
 
 
 // routing service initialize
-RoutingService::Initialize();
+RoutingService::initialize();
 
 // admin views service initialize
-AdminService::Initialize();
+AdminService::initialize();

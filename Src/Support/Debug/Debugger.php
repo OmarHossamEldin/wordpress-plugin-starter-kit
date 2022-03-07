@@ -2,17 +2,17 @@
 
 namespace Wordpress\Support\Debug;
 
-use Wordpress\Support\Facades\Filesystem\Directory;
+use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
 use Wordpress\Support\DateTime\WpCarbon;
 
 class Debugger
 {
-    private Directory $directory;
+    private DirectoryComposer $directoryComposer;
     private WpCarbon $wpCarbon;
 
     public function __construct()
     {
-        $this->directory = new Directory();
+        $this->directoryComposer = new DirectoryComposer();
         $this->wpCarbon = new WpCarbon();
     }
     public static function die_and_dump(...$variables): void
@@ -28,7 +28,7 @@ class Debugger
     public function log($text): void
     {
         $today = $this->wpCarbon->format('Y-m-d');
-        $filename = "{$this->directory->logsRoot}/{$today}.log";
+        $filename = "{$this->directoryComposer->logsRoot}/{$today}.log";
         if (file_exists($filename)) {
             $data = file_get_contents($filename);
             if (!is_array($text)) {

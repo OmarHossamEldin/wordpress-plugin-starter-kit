@@ -2,7 +2,7 @@
 
 namespace Wordpress\Database\Initialization;
 
-class Schema extends Connection
+class Schema 
 {
     private static function get_db_connect(): Connection
     {
@@ -21,11 +21,11 @@ class Schema extends Connection
                 ($columns) $engine
         QUERY;
 
-        self::get_db_connect()->db->query($query);
+        self::get_db_connect()->getDb()->query($query);
     }
 
     public static function dropIfExists(String $tableName)
     {
-        self::get_db_connect()->db->query("DROP TABLE IF EXISTS $tableName");
+        self::get_db_connect()->getDb()->query("DROP TABLE IF EXISTS $tableName");
     }
 }

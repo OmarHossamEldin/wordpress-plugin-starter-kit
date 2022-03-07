@@ -64,6 +64,10 @@ class Request
 
     public function set_route_params($params): self
     {
+        foreach ($params as  &$param) {
+            filter_var($param,  FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        unset($param);
         self::$routeParams = $params;
         return $this;
     }
