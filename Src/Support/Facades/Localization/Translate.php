@@ -2,23 +2,23 @@
 
 namespace Wordpress\Support\Facades\Localization;
 
-use Wordpress\Support\Facades\Filesystem\Directory;
+use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
 
 class Translate
 {
     public static function translate($fileName, $key): string
     {
         $lang = Lang::get();
-        $directory = new Directory();
-        $fileName = require("{$directory->pluginRoot}/Src/Langs/{$lang}/{$fileName}.php");
+        $directoryComposer = new DirectoryComposer();
+        $fileName = require("{$directoryComposer->pluginRoot}/Src/Langs/{$lang}/{$fileName}.php");
         return $fileName[$key];
     }
 
     public static function getTranslations($fileName): array
     {
         $lang = Lang::get();
-        $directory = new Directory();
-        $fileName = require("{$directory->pluginRoot}/Src/Langs/{$lang}/{$fileName}.php");
+        $directoryComposer = new DirectoryComposer();
+        $fileName = require("{$directoryComposer->pluginRoot}/Src/Langs/{$lang}/{$fileName}.php");
         return $fileName;
     }
 }

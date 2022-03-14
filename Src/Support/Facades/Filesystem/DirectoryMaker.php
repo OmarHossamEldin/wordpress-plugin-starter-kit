@@ -7,7 +7,7 @@ class DirectoryMaker
     private const WRITABLE = 0777;
     private const RECURSIVELY = true;
 
-    public function make_directory( $directory): bool
+    public function make_directory($directory): bool
     {
         if (!file_exists($directory) && !is_dir($directory)) {
             mkdir($directory, self::WRITABLE, self::RECURSIVELY);
