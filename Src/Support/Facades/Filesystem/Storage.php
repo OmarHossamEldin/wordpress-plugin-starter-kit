@@ -2,6 +2,8 @@
 
 namespace Wordpress\Support\Facades\Filesystem;
 
+use Wordpress\Support\DateTime\WpCarbon;
+
 class Storage
 {
     private DirectoryComposer $directoryComposer;
@@ -62,5 +64,26 @@ class Storage
 
             // error
         }
+    }
+
+    public function save_key_token(string $key): void
+    {
+        $wpCarbon = new WpCarbon();
+        $tokensDir = "{$this->directoryComposer->storageRoot}/Tokens/{$wpCarbon->format->format('Y_M_D')}";
+        if ($this->directoryMaker->make_directory($tokensDir)) {
+            $fileName = "$tokensDir/key";
+            file_put_contents($fileName, $key);
+        }
+    }
+
+    public function get_key_token(): string
+    {
+        $wpCarbon = new WpCarbon();
+        $tokensDir = "{$this->directoryComposer->storageRoot}/Tokens/{$wpCarbon->format->format('Y_M_D')}";
+        if ($this->directoryMaker->make_directory($tokensDir)) {
+            $fileName = "$tokensDir/key";
+            $key = file_get_contents($fileName);
+        }
+        return $key;
     }
 }

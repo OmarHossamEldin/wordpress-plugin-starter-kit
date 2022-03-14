@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use Wordpress\Support\Facades\Faker\FakerString;
 use Wordpress\Support\Facades\Server\Session;
 use PHPUnit\Framework\TestCase;
 
@@ -114,10 +113,9 @@ class SessionTest extends TestCase
         $this->session->start();
         $status = $this->session->status();
         $this->assertTrue($status);
-        $fakerString = new FakerString();
-        $token = $fakerString->generate_token(60);
+        $example = 'example';
         $expiration =  time();
-        $this->session->add_expiration_items(['token' => $token], $expiration);
+        $this->session->add_expiration_items(['token' => $example], $expiration);
         $result = $this->session->get_item_with_expiration('token');
         $this->assertEquals('this value is expired!', $result);
     }
@@ -128,11 +126,10 @@ class SessionTest extends TestCase
         $this->session->start();
         $status = $this->session->status();
         $this->assertTrue($status);
-        $fakerString = new FakerString();
-        $token = $fakerString->generate_token(60);
+        $example = 'example';
         $expiration =  time() + (10 * 60);
-        $this->session->add_expiration_items(['token' => $token], $expiration);
+        $this->session->add_expiration_items(['token' => $example], $expiration);
         $result = $this->session->get_item_with_expiration('token');
-        $this->assertEquals($result, $token);
+        $this->assertEquals($result, $example);
     }
 }
