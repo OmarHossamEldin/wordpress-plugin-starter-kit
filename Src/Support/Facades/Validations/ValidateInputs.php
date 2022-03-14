@@ -5,7 +5,6 @@ namespace Wordpress\Support\Facades\Validations;
 use Wordpress\Exceptions\UnsupportedValidationRuleException;
 use Wordpress\Support\Facades\Localization\Translate;
 use Wordpress\Helpers\ArrayValidator;
-use Wordpress\Support\Debug\Debugger;
 
 class ValidateInputs
 {

@@ -3,13 +3,12 @@
 namespace Wordpress\Services;
 
 
-use Wordpress\Database\Seeders\DatabaseSeeder;
-use Wordpress\Database\Migrations\PostsTable;
-use Wordpress\Models\Option;
-use Wordpress\Support\Debug\Debugger;
 use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
 use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
 use Wordpress\Support\Facades\Filesystem\Storage;
+use Wordpress\Database\Seeders\DatabaseSeeder;
+use Wordpress\Database\Migrations\PostsTable;
+use Wordpress\Models\Option;
 
 class InitializationService
 {
@@ -25,12 +24,11 @@ class InitializationService
         $directoryComposer = new DirectoryComposer();
         $storage = new Storage();
         // move template
-        //$storage->move_template('PostsThemeTemplate');
-
+        $storage->move_template('PostsThemeTemplate');
         // activate template
-        // $option = new Option();
-        // $option->update(['option_value' => 'PostsThemeTemplate'], ['option_name' => 'template']);
-        // $option->update(['option_value' => 'PostsThemeTemplate'], ['option_name' => 'stylesheet']);
+        $option = new Option();
+        $option->update(['option_value' => 'PostsThemeTemplate'], ['option_name' => 'template']);
+        $option->update(['option_value' => 'PostsThemeTemplate'], ['option_name' => 'stylesheet']);
 
         // seed plugin pages with it's content
 

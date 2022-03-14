@@ -6,7 +6,6 @@ use Wordpress\Exceptions\ModelInsertionException;
 use Wordpress\Support\Facades\Http\Request;
 use Wordpress\Support\DateTime\WpCarbon;
 use Wordpress\Helpers\ArrayValidator;
-use Wordpress\Support\Debug\Debugger;
 
 abstract class Model extends Connection
 {
@@ -155,6 +154,8 @@ abstract class Model extends Connection
         array_push($values, $date, $date);
         $data = array_combine($this->fillable, $values);
         $this->db->insert($this->table, $data);
+        $data['id'] = $this->db->insert_id;
+        return $data;
     }
 
     public function update(array $values, array $conditions)
@@ -165,7 +166,6 @@ abstract class Model extends Connection
             $values['updated_at'] = $date;
         }
         $this->db->update($this->table, $values, $conditions);
-        Debugger::die_and_dump($this->show_error_mode());
     }
 
     public function delete(array $conditions)
