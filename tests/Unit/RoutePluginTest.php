@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Wordpress\Support\Facades\Router\Route;
+use Wordpress\PluginName\Support\Facades\Router\Route;
 
 class RoutePluginTest extends TestCase
 {

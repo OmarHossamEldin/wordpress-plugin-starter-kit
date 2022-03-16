@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Support\Facades\Router;
+namespace Wordpress\PluginName\Support\Facades\Router;
 
 class MiddlewareHandler
 {
-    private const MIDDLEWARES_NAMESPACE = 'Wordpress\Middlewares';
+    private const MIDDLEWARES_NAMESPACE = 'Wordpress\PluginName\Middlewares';
     private const METHOD = 'handle';
 
     public static function call(string $middleware)

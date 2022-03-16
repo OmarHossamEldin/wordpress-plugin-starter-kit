@@ -1,11 +1,11 @@
 <?php
 
-namespace Wordpress\Controllers\RestApi;
+namespace Wordpress\PluginName\Controllers\RestApi;
 
-use Wordpress\Requests\Post\PostUpdateRequest;
-use Wordpress\Requests\Post\PostStoreRequest;
-use Wordpress\Helpers\Response;
-use Wordpress\Models\Post;
+use Wordpress\PluginName\Requests\Post\PostUpdateRequest;
+use Wordpress\PluginName\Requests\Post\PostStoreRequest;
+use Wordpress\PluginName\Helpers\Response;
+use Wordpress\PluginName\Models\Post;
 
 class PostsController
 {
@@ -29,7 +29,6 @@ class PostsController
 
     public function show(Post $post)
     {
-        $session = new Session();
         $post = $post->get_query_result();
         return !!$post ? Response::json([
             'message' => 'Post Retrieved Successfully.',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\Facades\Filesystem;
+namespace Wordpress\PluginName\Support\Facades\Filesystem;
 
 class DirectoryMaker
 {

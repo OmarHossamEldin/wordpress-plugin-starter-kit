@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\Facades\Localization;
+namespace Wordpress\PluginName\Support\Facades\Localization;
 
 class Lang
 {

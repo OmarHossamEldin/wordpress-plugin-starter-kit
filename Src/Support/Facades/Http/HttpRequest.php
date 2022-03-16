@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Support\Facades\Http;
+namespace Wordpress\PluginName\Support\Facades\Http;
 
-use Wordpress\Exceptions\InvalidRequestException;
-use Wordpress\Exceptions\UnsupportedAuthenticationType;
-use Wordpress\Exceptions\UnsupportedRequestType;
+use Wordpress\PluginName\Exceptions\InvalidRequestException;
+use Wordpress\PluginName\Exceptions\UnsupportedAuthenticationType;
+use Wordpress\PluginName\Exceptions\UnsupportedRequestType;
 
 class HttpRequest
 {

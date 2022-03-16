@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-use Wordpress\Support\Facades\Exception\ExceptionHandler;
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
 
 class ModelInsertionException extends ExceptionHandler
 {

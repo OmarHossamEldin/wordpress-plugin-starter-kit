@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Database\Initialization;
+namespace Wordpress\PluginName\Database\Initialization;
 
 class Schema
 {

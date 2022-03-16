@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Middlewares;
+namespace Wordpress\PluginName\Middlewares;
 
-use Wordpress\Helpers\Redirect;
-use Wordpress\Support\Facades\Http\Header;
+use Wordpress\PluginName\Helpers\Redirect;
+use Wordpress\PluginName\Support\Facades\Http\Header;
 
 class VerifyAjaxRequest
 {

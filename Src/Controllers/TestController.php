@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Controllers;
+namespace Wordpress\PluginName\Controllers;
 
 class TestController
 {

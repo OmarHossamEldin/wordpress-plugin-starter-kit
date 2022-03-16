@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Helpers;
+namespace Wordpress\PluginName\Helpers;
 
-use Wordpress\Support\Facades\Http\Header;
+use Wordpress\PluginName\Support\Facades\Http\Header;
 
 class Response
 {

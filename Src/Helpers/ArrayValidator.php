@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Helpers;
+namespace Wordpress\PluginName\Helpers;
 
 class ArrayValidator
 {

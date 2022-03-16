@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use Wordpress\Support\Facades\Server\Session;
+use Wordpress\PluginName\Support\Facades\Server\Session;
 use PHPUnit\Framework\TestCase;
 
 class SessionTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Services;
+namespace Wordpress\PluginName\Services;
 
-use Wordpress\Support\Facades\Router\Route;
-use Wordpress\Support\Facades\Template\Asset;
+use Wordpress\PluginName\Support\Facades\Router\Route;
+use Wordpress\PluginName\Support\Facades\Template\Asset;
 
 class AdminService
 {

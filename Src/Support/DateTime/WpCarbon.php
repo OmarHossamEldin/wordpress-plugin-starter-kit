@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\DateTime;
+namespace Wordpress\PluginName\Support\DateTime;
 
 /**
  * helper class for date time manipulation

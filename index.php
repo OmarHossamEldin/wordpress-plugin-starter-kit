@@ -11,7 +11,7 @@ License: MIT
 
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use Wordpress\Support\Bootstrap\Plugin;
+use Wordpress\PluginName\Support\Bootstrap\Plugin;
 
 
 $plugin = new Plugin();

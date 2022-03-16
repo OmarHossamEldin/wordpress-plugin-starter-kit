@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Filesystem;
+namespace Wordpress\PluginName\Support\Facades\Filesystem;
 
-use Wordpress\Support\DateTime\WpCarbon;
+use Wordpress\PluginName\Support\DateTime\WpCarbon;
 
 class Storage
 {

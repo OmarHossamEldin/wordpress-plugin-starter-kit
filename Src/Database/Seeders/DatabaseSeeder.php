@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Database\Seeders;
+namespace Wordpress\PluginName\Database\Seeders;
 
-use Wordpress\Database\Initialization\Seeder;
+use Wordpress\PluginName\Database\Initialization\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Server;
+namespace Wordpress\PluginName\Support\Facades\Server;
 
-use Wordpress\Helpers\ArrayValidator;
+use Wordpress\PluginName\Helpers\ArrayValidator;
 
 class Session
 {

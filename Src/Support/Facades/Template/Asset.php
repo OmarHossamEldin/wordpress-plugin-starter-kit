@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Template;
+namespace Wordpress\PluginName\Support\Facades\Template;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
 
 class Asset
 {

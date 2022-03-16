@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Support\Facades\Faker;
+namespace Wordpress\PluginName\Support\Facades\Faker;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
-use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryMaker;
 
 class FakerImage
 {

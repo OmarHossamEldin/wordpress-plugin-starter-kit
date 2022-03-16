@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\Facades\Faker;
+namespace Wordpress\PluginName\Support\Facades\Faker;
 
 class Faker
 {

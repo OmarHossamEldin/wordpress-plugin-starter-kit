@@ -1,11 +1,11 @@
 <?php
 
-namespace Wordpress\Support\Facades\Router;
+namespace Wordpress\PluginName\Support\Facades\Router;
 
-use Wordpress\Exceptions\RouteNotFoundException;
-use Wordpress\Helpers\Response;
-use Wordpress\Support\Debug\Debugger;
-use Wordpress\Support\Facades\Http\Request;
+use Wordpress\PluginName\Exceptions\RouteNotFoundException;
+use Wordpress\PluginName\Helpers\Response;
+use Wordpress\PluginName\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Http\Request;
 
 class Route
 {

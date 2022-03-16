@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Requests\Post;
+namespace Wordpress\PluginName\Requests\Post;
 
-use Wordpress\Support\Facades\Traits\ValidationTrait;
-use Wordpress\Support\Facades\Http\Request;
+use Wordpress\PluginName\Support\Facades\Traits\ValidationTrait;
+use Wordpress\PluginName\Support\Facades\Http\Request;
 
 class PostUpdateRequest extends Request
 {

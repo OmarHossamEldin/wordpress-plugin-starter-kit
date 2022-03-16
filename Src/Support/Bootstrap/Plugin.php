@@ -1,12 +1,12 @@
 <?php
 
-namespace Wordpress\Support\Bootstrap;
+namespace Wordpress\PluginName\Support\Bootstrap;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
-use Wordpress\Services\InitializationService;
-use Wordpress\Support\Facades\Server\Session;
-use Wordpress\Services\RoutingService;
-use Wordpress\Services\AdminService;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Services\InitializationService;
+use Wordpress\PluginName\Support\Facades\Server\Session;
+use Wordpress\PluginName\Services\RoutingService;
+use Wordpress\PluginName\Services\AdminService;
 
 class Plugin
 {

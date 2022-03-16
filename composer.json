@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Wordpress\\": "Src/"
+            "Wordpress\\PluginName\\": "Src/"
         }
     },
     "autoload-dev": {

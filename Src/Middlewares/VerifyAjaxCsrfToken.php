@@ -1,12 +1,12 @@
 <?php
 
-namespace Wordpress\Middlewares;
+namespace Wordpress\PluginName\Middlewares;
 
-use Wordpress\Support\Facades\Authentication\CsrfAuthentication;
+use Wordpress\PluginName\Support\Facades\Authentication\CsrfAuthentication;
 
-use Wordpress\Support\Facades\Http\Request;
-use Wordpress\Support\Facades\Http\Header;
-use Wordpress\Helpers\Response;
+use Wordpress\PluginName\Support\Facades\Http\Request;
+use Wordpress\PluginName\Support\Facades\Http\Header;
+use Wordpress\PluginName\Helpers\Response;
 
 class VerifyAjaxCsrfToken
 {

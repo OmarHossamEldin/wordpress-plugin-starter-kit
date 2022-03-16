@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Database\Migrations;
+namespace Wordpress\PluginName\Database\Migrations;
 
-use Wordpress\Database\Initialization\Schema;
-use Wordpress\Database\Initialization\Table;
+use Wordpress\PluginName\Database\Initialization\Schema;
+use Wordpress\PluginName\Database\Initialization\Table;
 
 class PostsTable
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Database\Migrations;
+namespace Wordpress\PluginName\Database\Migrations;
 
-use Wordpress\Database\Initialization\Migration;
+use Wordpress\PluginName\Database\Initialization\Migration;
 
 class DatabaseMigration extends Migration
 {

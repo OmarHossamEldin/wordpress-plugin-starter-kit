@@ -1,13 +1,13 @@
 <?php
 
-namespace Wordpress\Services;
+namespace Wordpress\PluginName\Services;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
-use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
-use Wordpress\Database\Migrations\DatabaseMigration;
-use Wordpress\Support\Facades\Filesystem\Storage;
-use Wordpress\Database\Seeders\DatabaseSeeder;
-use Wordpress\Models\Option;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryMaker;
+use Wordpress\PluginName\Database\Migrations\DatabaseMigration;
+use Wordpress\PluginName\Support\Facades\Filesystem\Storage;
+use Wordpress\PluginName\Database\Seeders\DatabaseSeeder;
+use Wordpress\PluginName\Models\Option;
 
 class InitializationService
 {
