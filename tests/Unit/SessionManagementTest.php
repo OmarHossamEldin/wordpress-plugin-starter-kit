@@ -58,8 +58,8 @@ class SessionTest extends TestCase
         $addedItems = $this->session->add_items($items);
         $this->assertNotEmpty($this->session->get_session_data());
         $this->assertArrayHasKey('user', $addedItems);
-        $this->assertArrayNotHasKey('username', $addedItems);
-        $this->assertArrayNotHasKey('email', $addedItems);
+        $this->assertArrayHasKey('username', $addedItems['user']);
+        $this->assertArrayHasKey('email', $addedItems['user']);
     }
 
     /** @test */

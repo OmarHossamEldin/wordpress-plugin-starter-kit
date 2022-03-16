@@ -13,17 +13,6 @@ class Session
      */
     private bool $isStarted = false;
     
-    /**
-     * session data
-     *
-     * @var array
-     */
-    private $data;
-
-    public function __construct()
-    {
-        $this->data = &$_SESSION;
-    }
     
     public function status(): bool
     {
@@ -44,15 +33,15 @@ class Session
     public function add_items(array $items): array
     {
         foreach ($items as $key => $item) {
-            $this->data[$key] = $item;
+            $_SESSION[$key] = $item;
         }
-        return $this->data;
+        return $_SESSION;
     }
 
     public function remove_items(string ...$items): bool
     {
         foreach ($items as $item) {
-            unset($this->data[$item]);
+            unset($_SESSION[$item]);
         }
         return true;
     }
@@ -60,10 +49,10 @@ class Session
     public function get_items(string ...$keys): array
     {
         $values = [];
-        $arrayValidator = new ArrayValidator($this->data);
+        $arrayValidator = new ArrayValidator($_SESSION);
         foreach ($keys  as $key) {
             if ($arrayValidator->array_keys_exists($key)) {
-                $values[$key] = $this->data[$key];
+                $values[$key] = $_SESSION[$key];
             }
         }
         return $values;
@@ -72,9 +61,9 @@ class Session
     public function add_expiration_items(array $items, int $expiration): array
     {
         foreach ($items as $key => $item) {
-            $this->data[$key] = ['value' => $item, 'expiration' => $expiration];
+            $_SESSION[$key] = ['value' => $item, 'expiration' => $expiration];
         }
-        return $this->data;
+        return $_SESSION;
     }
 
     public function get_item_with_expiration($key): string
@@ -95,9 +84,9 @@ class Session
     public function clear_expired_items(): string
     {
         $time = time();
-        foreach($this->data as $key => $item){
-            if(isset($this->data[$key]['expiration'])){
-                $result = $this->data[$key]['expiration'] <=> $time;
+        foreach($_SESSION as $key => $item){
+            if(isset($_SESSION[$key]['expiration'])){
+                $result = $_SESSION[$key]['expiration'] <=> $time;
                 if (($result === 0) || ($result === -1)) {
                     $this->remove_items($key);
                 }
@@ -108,12 +97,12 @@ class Session
 
     public function get_session_data(): array
     {
-        return $this->data;
+        return $_SESSION;
     }
 
     public function clear(): bool
     {
-        $this->data = [];
+        $_SESSION = [];
         return true;
     }
 

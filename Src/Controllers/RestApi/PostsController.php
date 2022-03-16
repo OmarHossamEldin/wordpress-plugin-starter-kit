@@ -29,6 +29,7 @@ class PostsController
 
     public function show(Post $post)
     {
+        $session = new Session();
         $post = $post->get_query_result();
         return !!$post ? Response::json([
             'message' => 'Post Retrieved Successfully.',

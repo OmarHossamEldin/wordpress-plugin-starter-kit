@@ -8,24 +8,18 @@ Author URI: https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/
 Plugin URI: https://packagist.org/packages/reneknox/wordpress
 License: MIT
 */
-require_once __DIR__ . '/vendor/autoload.php';
 
-use Wordpress\Services\AdminService;
-use Wordpress\Services\RoutingService;
+require_once(__DIR__ . '/vendor/autoload.php');
 
-// activation 
-register_activation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'install']);
-
-// deactivation
-register_deactivation_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'deactivate']);
-
-//uninstall
-register_uninstall_hook(__FILE__, [Wordpress\Services\InitializationService::class, 'uninstall']);
+use Wordpress\Support\Bootstrap\Plugin;
 
 
+$plugin = new Plugin();
 
-// routing service initialize
-RoutingService::initialize();
+$plugin->install();
 
-// admin views service initialize
-AdminService::initialize();
+$plugin->deactivate();
+
+$plugin->uninstall();
+
+$plugin->run();
