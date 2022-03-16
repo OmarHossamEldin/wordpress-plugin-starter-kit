@@ -2,12 +2,14 @@
 
 namespace Wordpress\Database\Seeders;
 
+use Wordpress\Database\Initialization\Seeder;
 
-class DatabaseSeeder
+class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $postTableSeeder = new PostsTableSeeder();
-        $postTableSeeder->create();
+        $this->call([
+            PostsTableSeeder::class
+        ]);
     }
 }

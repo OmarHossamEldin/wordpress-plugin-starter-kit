@@ -18,8 +18,7 @@ class AdminService
                 'posts',
                 'manage_options',
                 'posts',
-                fn () =>
-                Route::execute('PostsController@index'),
+                fn () => Route::execute('PostsController@index'),
                 'dashicons-welcome-write-blog',
                 110
             );
