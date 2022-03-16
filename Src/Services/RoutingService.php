@@ -14,7 +14,7 @@ class RoutingService
             Route::get('/posts/{id}', 'RestApi\PostsController@show');
             Route::put('/posts/{id}', 'RestApi\PostsController@update');
             Route::delete('/posts/{id}', 'RestApi\PostsController@destroy');
-            
+
             Route::resolveApi(Request::uri(), Request::type());
         });
     }

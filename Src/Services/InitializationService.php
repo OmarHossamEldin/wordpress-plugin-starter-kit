@@ -2,12 +2,11 @@
 
 namespace Wordpress\Services;
 
-
 use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
 use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
+use Wordpress\Database\Migrations\DatabaseMigration;
 use Wordpress\Support\Facades\Filesystem\Storage;
 use Wordpress\Database\Seeders\DatabaseSeeder;
-use Wordpress\Database\Migrations\PostsTable;
 use Wordpress\Models\Option;
 
 class InitializationService
@@ -35,13 +34,12 @@ class InitializationService
         // make Directory for uploads
         $directory = $directoryComposer->uploadPath['basedir'] . '/' . $directoryComposer::PLUGIN_NAME_DIR;
         $directoryMaker->make_directory($directory);
-        // create tables
-        $postsTable = new PostsTable();
-        $postsTable->up();
+   
+        $databaseMigration = new DatabaseMigration();
+        $databaseMigration->run_up();
 
-        // seed testing data
-        $runSeeder = new DatabaseSeeder();
-        $runSeeder->run();
+        $databaseSeeder = new DatabaseSeeder();
+        $databaseSeeder->run();
     }
 
     /**
@@ -66,7 +64,7 @@ class InitializationService
         // remove upload folder
 
         // remove tables
-        $postsTable = new PostsTable();
-        $postsTable->down();
+        $databaseMigration = new DatabaseMigration();
+        $databaseMigration->run_down();
     }
 }

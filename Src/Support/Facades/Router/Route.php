@@ -101,21 +101,23 @@ class Route
     public static function resolveApi(string $route, string $requestType)
     {
         $baseUrl = '/wordpress/wp-json/';
-        $route = implode('', explode($baseUrl, $route));
+        if ((!!stripos($route, "/wp-json/") === true) && (!!stripos($route, "/wp/") === false)) {
+            $route = implode('', explode($baseUrl, $route));
 
-        $action = self::$routes[$requestType][$route] ?? null;
+            $action = self::$routes[$requestType][$route] ?? null;
 
-        if (!$action) {
-            $action = self::get_action($requestType, $route);
+            if (!$action) {
+                $action = self::get_action($requestType, $route);
 
-            if ($action === false) {
-                set_exception_handler(function ($exception) {
-                    return Response::json(['message' => $exception->getMessage()], 404);
-                });
-                throw new RouteNotFoundException();
+                if ($action === false) {
+                    set_exception_handler(function ($exception) {
+                        return Response::json(['message' => $exception->getMessage()], 404);
+                    });
+                    throw new RouteNotFoundException();
+                }
             }
+            return RouteHandler::call($action);
         }
-        return RouteHandler::call($action);
     }
 
     public static function get_action(...$action)
