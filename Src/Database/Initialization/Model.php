@@ -9,18 +9,11 @@ use Wordpress\Helpers\ArrayValidator;
 
 abstract class Model extends Connection
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $request = new Request();
-        $data = $request->get_route_params();
-        if (!!$data) {
-            $data = $this->first($data['id']);
-            if (!!$data) {
-                $this->set_query_result($data);
-            }
-        }
-    }
+    /**
+     * database connection
+     */
+    protected $db;
+
     /**
      * table name $table
      */
@@ -63,6 +56,21 @@ abstract class Model extends Connection
      * @var string
      */
     private $dataResult = '';
+
+    public function __construct()
+    {
+        $connection = new Connection();
+        $this->db = $connection->get_db();
+
+        $request = new Request();
+        $data = $request->get_route_params();
+        if (!!$data) {
+            $data = $this->first($data['id']);
+            if (!!$data) {
+                $this->set_query_result($data);
+            }
+        }
+    }
 
     public function set_query_result($data): self
     {

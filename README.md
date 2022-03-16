@@ -25,7 +25,7 @@
 
 ## Prerequisite
 
-1. php >= 8.0
+1. php >= 7.4
 1. composer
 
 ## Directory Structure

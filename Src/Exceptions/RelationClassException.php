@@ -2,15 +2,9 @@
 
 namespace Wordpress\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\Support\Facades\Exception\ExceptionHandler;
 
-class RelationClassException extends \Exception
+class RelationClassException extends ExceptionHandler
 {
-    protected $message = "Relation Class Exception";
-    
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
+    protected $message = "Relation Class Exception";   
 }

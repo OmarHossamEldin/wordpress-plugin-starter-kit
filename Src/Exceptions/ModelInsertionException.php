@@ -2,15 +2,9 @@
 
 namespace Wordpress\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\Support\Facades\Exception\ExceptionHandler;
 
-class ModelInsertionException extends \Exception
+class ModelInsertionException extends ExceptionHandler
 {
     protected $message = 'insert values should be identical with model columns';
-
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
 }

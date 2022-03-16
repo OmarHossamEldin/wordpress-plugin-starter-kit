@@ -2,7 +2,9 @@
 
 namespace Wordpress\Exceptions;
 
-class ClassNotFoundException extends \Exception
+use Wordpress\Support\Facades\Exception\ExceptionHandler;
+
+class ClassNotFoundException extends ExceptionHandler
 {
     protected $message = 'class not found';
 }

@@ -3,6 +3,8 @@
 namespace Wordpress\Support\Facades\Router;
 
 use Wordpress\Exceptions\RouteNotFoundException;
+use Wordpress\Helpers\Response;
+use Wordpress\Support\Debug\Debugger;
 use Wordpress\Support\Facades\Http\Request;
 
 class Route
@@ -107,15 +109,13 @@ class Route
             $action = self::get_action($requestType, $route);
 
             if ($action === false) {
+                set_exception_handler(function ($exception) {
+                    return Response::json(['message' => $exception->getMessage()], 404);
+                });
                 throw new RouteNotFoundException();
             }
         }
-        $namespace = substr($route, 0, strlen(self::$namespace));
-        $route = explode($namespace, $route)[1];
-        register_rest_route($namespace, $route, [
-            'methods' => $requestType,
-            'callback' => RouteHandler::call($action)
-        ]);
+        return RouteHandler::call($action);
     }
 
     public static function get_action(...$action)

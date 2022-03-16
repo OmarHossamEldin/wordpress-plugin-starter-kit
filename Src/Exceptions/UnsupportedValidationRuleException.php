@@ -2,15 +2,9 @@
 
 namespace Wordpress\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\Support\Facades\Exception\ExceptionHandler;
 
-class UnsupportedValidationRuleException extends \Exception
+class UnsupportedValidationRuleException extends ExceptionHandler
 {
-    protected $message = "Unsupported Validation Rule Has Been Used";
-
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
+    protected $message = "Unsupported Validation Rule Has Been Used"; 
 }

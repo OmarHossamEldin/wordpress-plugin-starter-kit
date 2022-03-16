@@ -32,14 +32,15 @@ class Debugger
         if (file_exists($filename)) {
             $data = file_get_contents($filename);
             if (!is_array($text)) {
-                $data .= "\n$text";
+                $data .= "$text\n";
             } else if (is_array($text)) {
-                $text = implode("\n", $text);
-                $data .= "\n$text";
+                foreach($text as $key => $value){
+                    $data .= "$key => $value\n";
+                }
             }
             file_put_contents($filename, $data);
         } else {
-            file_put_contents($filename, $text);
+            file_put_contents($filename, "$text\n");
         }
     }
 

@@ -16,7 +16,7 @@ class Connection
      *
      * @return object
      */
-    public function getDb(): object
+    public function get_db(): object
     {
         return $this->db;
     }
