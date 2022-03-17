@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Support\Facades\Router;
+namespace Wordpress\PluginName\Support\Facades\Router;
 
 class RouteHandler
 {
-    private const CONTROLLERS_NAMESPACE = 'Wordpress\\Controllers\\';
+    private const CONTROLLERS_NAMESPACE = 'Wordpress\\PluginName\\Controllers\\';
 
     public static function call($handler, ?array $variableParams = null)
     {

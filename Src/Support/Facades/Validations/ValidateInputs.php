@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Support\Facades\Validations;
+namespace Wordpress\PluginName\Support\Facades\Validations;
 
-use Wordpress\Exceptions\UnsupportedValidationRuleException;
-use Wordpress\Support\Facades\Localization\Translate;
-use Wordpress\Helpers\ArrayValidator;
+use Wordpress\PluginName\Exceptions\UnsupportedValidationRuleException;
+use Wordpress\PluginName\Support\Facades\Localization\Translate;
+use Wordpress\PluginName\Helpers\ArrayValidator;
 
 class ValidateInputs
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\Facades\Router;
+namespace Wordpress\PluginName\Support\Facades\Router;
 
 class ParamsHandler
 {

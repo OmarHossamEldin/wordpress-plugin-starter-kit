@@ -3,7 +3,7 @@
 namespace Tests\Cli;
 
 // use PHPUnit\Framework\TestCase;
-// use Wordpress\Cli\App\WpArtisan;
+// use Wordpress\PluginName\Cli\App\WpArtisan;
 
 // class WpArtisanCliTest extends TestCase
 // {

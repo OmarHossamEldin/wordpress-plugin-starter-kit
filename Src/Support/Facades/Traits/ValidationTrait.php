@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Support\Facades\Traits;
+namespace Wordpress\PluginName\Support\Facades\Traits;
 
-use Wordpress\Support\Facades\Validations\ValidateInputs;
-use Wordpress\Helpers\ArrayValidator;
-use Wordpress\Helpers\Response;
+use Wordpress\PluginName\Support\Facades\Validations\ValidateInputs;
+use Wordpress\PluginName\Helpers\ArrayValidator;
+use Wordpress\PluginName\Helpers\Response;
 
 trait ValidationTrait
 {

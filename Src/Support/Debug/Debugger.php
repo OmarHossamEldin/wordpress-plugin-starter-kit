@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Support\Debug;
+namespace Wordpress\PluginName\Support\Debug;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
-use Wordpress\Support\DateTime\WpCarbon;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\DateTime\WpCarbon;
 
 class Debugger
 {

@@ -1,14 +1,13 @@
 <?php
 
-namespace Wordpress\Services;
+namespace Wordpress\PluginName\Services;
 
-
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
-use Wordpress\Support\Facades\Filesystem\DirectoryMaker;
-use Wordpress\Support\Facades\Filesystem\Storage;
-use Wordpress\Database\Seeders\DatabaseSeeder;
-use Wordpress\Database\Migrations\PostsTable;
-use Wordpress\Models\Option;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryMaker;
+use Wordpress\PluginName\Database\Migrations\DatabaseMigration;
+use Wordpress\PluginName\Support\Facades\Filesystem\Storage;
+use Wordpress\PluginName\Database\Seeders\DatabaseSeeder;
+use Wordpress\PluginName\Models\Option;
 
 class InitializationService
 {
@@ -35,13 +34,12 @@ class InitializationService
         // make Directory for uploads
         $directory = $directoryComposer->uploadPath['basedir'] . '/' . $directoryComposer::PLUGIN_NAME_DIR;
         $directoryMaker->make_directory($directory);
-        // create tables
-        $postsTable = new PostsTable();
-        $postsTable->up();
+   
+        $databaseMigration = new DatabaseMigration();
+        $databaseMigration->run_up();
 
-        // seed testing data
-        $runSeeder = new DatabaseSeeder();
-        $runSeeder->run();
+        $databaseSeeder = new DatabaseSeeder();
+        $databaseSeeder->run();
     }
 
     /**
@@ -66,7 +64,7 @@ class InitializationService
         // remove upload folder
 
         // remove tables
-        $postsTable = new PostsTable();
-        $postsTable->down();
+        $databaseMigration = new DatabaseMigration();
+        $databaseMigration->run_down();
     }
 }

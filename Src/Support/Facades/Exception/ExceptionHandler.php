@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Exception;
+namespace Wordpress\PluginName\Support\Facades\Exception;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Debug\Debugger;
 
 class ExceptionHandler extends \Exception
 {

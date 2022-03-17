@@ -1,11 +1,11 @@
 <?php
 
-namespace Wordpress\Database\Initialization;
+namespace Wordpress\PluginName\Database\Initialization;
 
-use Wordpress\Exceptions\ModelInsertionException;
-use Wordpress\Support\Facades\Http\Request;
-use Wordpress\Support\DateTime\WpCarbon;
-use Wordpress\Helpers\ArrayValidator;
+use Wordpress\PluginName\Exceptions\ModelInsertionException;
+use Wordpress\PluginName\Support\Facades\Http\Request;
+use Wordpress\PluginName\Support\DateTime\WpCarbon;
+use Wordpress\PluginName\Helpers\ArrayValidator;
 
 abstract class Model extends Connection
 {

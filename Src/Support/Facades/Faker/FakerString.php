@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Faker;
+namespace Wordpress\PluginName\Support\Facades\Faker;
 
-use Wordpress\Support\Facades\Filesystem\Storage;
+use Wordpress\PluginName\Support\Facades\Filesystem\Storage;
 
 class FakerString
 {

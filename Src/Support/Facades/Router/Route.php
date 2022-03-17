@@ -1,11 +1,11 @@
 <?php
 
-namespace Wordpress\Support\Facades\Router;
+namespace Wordpress\PluginName\Support\Facades\Router;
 
-use Wordpress\Exceptions\RouteNotFoundException;
-use Wordpress\Helpers\Response;
-use Wordpress\Support\Debug\Debugger;
-use Wordpress\Support\Facades\Http\Request;
+use Wordpress\PluginName\Exceptions\RouteNotFoundException;
+use Wordpress\PluginName\Helpers\Response;
+use Wordpress\PluginName\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Http\Request;
 
 class Route
 {
@@ -101,21 +101,23 @@ class Route
     public static function resolveApi(string $route, string $requestType)
     {
         $baseUrl = '/wordpress/wp-json/';
-        $route = implode('', explode($baseUrl, $route));
+        if ((!!stripos($route, "/wp-json/") === true) && (!!stripos($route, "/wp/") === false)) {
+            $route = implode('', explode($baseUrl, $route));
 
-        $action = self::$routes[$requestType][$route] ?? null;
+            $action = self::$routes[$requestType][$route] ?? null;
 
-        if (!$action) {
-            $action = self::get_action($requestType, $route);
+            if (!$action) {
+                $action = self::get_action($requestType, $route);
 
-            if ($action === false) {
-                set_exception_handler(function ($exception) {
-                    return Response::json(['message' => $exception->getMessage()], 404);
-                });
-                throw new RouteNotFoundException();
+                if ($action === false) {
+                    set_exception_handler(function ($exception) {
+                        return Response::json(['message' => $exception->getMessage()], 404);
+                    });
+                    throw new RouteNotFoundException();
+                }
             }
+            return RouteHandler::call($action);
         }
-        return RouteHandler::call($action);
     }
 
     public static function get_action(...$action)

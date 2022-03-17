@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Controllers;
+namespace Wordpress\PluginName\Controllers;
 
-use Wordpress\Support\Facades\Template\View;
+use Wordpress\PluginName\Support\Facades\Template\View;
 
 class PostsController
 {

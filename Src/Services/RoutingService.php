@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Services;
+namespace Wordpress\PluginName\Services;
 
-use Wordpress\Support\Facades\Http\Request;
-use Wordpress\Support\Facades\Router\Route;
+use Wordpress\PluginName\Support\Facades\Http\Request;
+use Wordpress\PluginName\Support\Facades\Router\Route;
 
 class RoutingService
 {
@@ -14,7 +14,7 @@ class RoutingService
             Route::get('/posts/{id}', 'RestApi\PostsController@show');
             Route::put('/posts/{id}', 'RestApi\PostsController@update');
             Route::delete('/posts/{id}', 'RestApi\PostsController@destroy');
-            
+
             Route::resolveApi(Request::uri(), Request::type());
         });
     }

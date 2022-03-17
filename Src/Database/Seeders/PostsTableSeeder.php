@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Database\Seeders;
+namespace Wordpress\PluginName\Database\Seeders;
 
-use Wordpress\Models\Post;
-use Wordpress\Support\Facades\Faker\Faker;
+use Wordpress\PluginName\Models\Post;
+use Wordpress\PluginName\Support\Facades\Faker\Faker;
 
 class PostsTableSeeder
 {

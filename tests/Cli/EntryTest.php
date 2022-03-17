@@ -2,7 +2,7 @@
 
 namespace Tests\Cli;
 
-// use Wordpress\Cli\App\Entry;
+// use Wordpress\PluginName\Cli\App\Entry;
 
 // class EntryTest extends Cli
 // {

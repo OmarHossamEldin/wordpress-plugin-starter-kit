@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Localization;
+namespace Wordpress\PluginName\Support\Facades\Localization;
 
-use Wordpress\Support\Facades\Filesystem\DirectoryComposer;
+use Wordpress\PluginName\Support\Facades\Filesystem\DirectoryComposer;
 
 class Translate
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Models;
+namespace Wordpress\PluginName\Models;
 
-use Wordpress\Database\Initialization\Model;
+use Wordpress\PluginName\Database\Initialization\Model;
 
 class Post extends Model
 {

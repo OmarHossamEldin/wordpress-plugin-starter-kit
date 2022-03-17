@@ -8,70 +8,63 @@ class HttpRequest {
     this.headers = headers;
   }
 
-  get(url, data = '') {
+  get(url, data = "") {
     return this.request(url, "GET", data);
   }
 
-  post(url, data = '') {
+  post(url, data = "") {
     return this.request(url, "POST", data);
   }
 
-  patch(url, data = '') {
+  patch(url, data = "") {
     return this.request(url, "PATCH", data);
   }
 
-  put(url, data = '') {
+  put(url, data = "") {
     return this.request(url, "PUT", data);
   }
-  
-  delete(url, data = '') {
+
+  delete(url, data = "") {
     return this.request(url, "DELETE", data);
   }
-  
+
   async request(url, method, data) {
     let response = null;
     switch (method) {
       case "POST":
       case "PATCH":
       case "PUT":
-      case "DELETE":
-        if (typeof data === 'object') {
+        if (!!data) {
           url = this.basUrl + url;
           response = await fetch(url, {
             method,
             headers: this.headers,
             body: JSON.stringify(data),
           });
-          if (response.status > 302) {
-            return response;
-          } else {
-            return {
-              status: response.status,
-              data: await response.json(),
-            };
-          }
-        }
-        else {
-          console.error('passed data should be object');
+        } else {
+          console.error("passed data should be not empty object");
         }
         break;
       case "GET":
-        url = !!data ? this.basUrl + url + data : this.basUrl + url;
+        url = this.basUrl + url;
         response = await fetch(url, {
           method,
           headers: this.headers,
         });
         break;
+      case "DELETE":
+        url = this.basUrl + url;
+        response = await fetch(url, {
+          method,
+          headers: this.headers,
+        });
+        return response;
       default:
-        console.error('un support request type');
+        console.error("un support request type");
     }
-    if (response.status > 302) {
-      return response;
-    } else {
-      return {
-        status: response.status,
-        data: await response.json(),
-      };
-    }
+    return {
+      status: response.status,
+      data: await response.json(),
+    };
   }
 }
