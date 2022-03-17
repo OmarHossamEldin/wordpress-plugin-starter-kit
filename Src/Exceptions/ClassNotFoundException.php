@@ -1,8 +1,10 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-class ClassNotFoundException extends \Exception
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
+
+class ClassNotFoundException extends ExceptionHandler
 {
     protected $message = 'class not found';
 }

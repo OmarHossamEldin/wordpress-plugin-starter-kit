@@ -1,6 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Faker;
+namespace Wordpress\PluginName\Support\Facades\Faker;
+
+use Wordpress\PluginName\Support\Facades\Filesystem\Storage;
 
 class FakerString
 {
@@ -19,7 +21,7 @@ class FakerString
         $numbers = '1234567890';
         $key = 'WP_ARTISAN';
         $token = '';
-
+        $storage = new Storage();
         for ($i = 0; $i <= $length; $i++) {
             $alphabetCapsIndex = rand(0, strlen($alphabetCaps) - 1);
             $alphabetSmallIndex = rand(0, strlen($alphabetSmall) - 1);
@@ -30,6 +32,8 @@ class FakerString
                 $alphabetSmall[$alphabetSmallIndex] .
                 $numbers[$numbersIndex] .
                 $key[$keyIndex];
+            $key = $alphabetCapsIndex . $alphabetSmallIndex . $numbersIndex . $keyIndex;
+            $storage->save_key_token($key);
         }
         return $token;
     }

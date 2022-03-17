@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Database\Initialization;
+namespace Wordpress\PluginName\Database\Initialization;
 
 class Connection
 {
@@ -16,7 +16,7 @@ class Connection
      *
      * @return object
      */
-    public function getDb(): object
+    public function get_db(): object
     {
         return $this->db;
     }

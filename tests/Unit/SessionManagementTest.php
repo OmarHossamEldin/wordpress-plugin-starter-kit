@@ -2,8 +2,7 @@
 
 namespace Tests\Unit;
 
-use Wordpress\Support\Facades\Faker\FakerString;
-use Wordpress\Support\Facades\Server\Session;
+use Wordpress\PluginName\Support\Facades\Server\Session;
 use PHPUnit\Framework\TestCase;
 
 class SessionTest extends TestCase
@@ -57,10 +56,10 @@ class SessionTest extends TestCase
             'email' => 'wpArtisan@example.com'
         ];
         $addedItems = $this->session->add_items($items);
-        $this->assertNotEmpty($this->session->get_session());
+        $this->assertNotEmpty($this->session->get_session_data());
         $this->assertArrayHasKey('user', $addedItems);
-        $this->assertArrayNotHasKey('username', $addedItems);
-        $this->assertArrayNotHasKey('email', $addedItems);
+        $this->assertArrayHasKey('username', $addedItems['user']);
+        $this->assertArrayHasKey('email', $addedItems['user']);
     }
 
     /** @test */
@@ -72,10 +71,10 @@ class SessionTest extends TestCase
         $this->assertTrue($status);
         $item['totalBalance'] = 1000_000;
         $items = $this->session->add_items($item);
-        $this->assertNotEmpty($this->session->get_session());
+        $this->assertNotEmpty($this->session->get_session_data());
         $this->assertArrayHasKey('totalBalance', $items);
         $this->assertTrue($this->session->clear());
-        $this->assertEmpty($this->session->get_session());
+        $this->assertEmpty($this->session->get_session_data());
     }
 
     /** @test */
@@ -114,11 +113,10 @@ class SessionTest extends TestCase
         $this->session->start();
         $status = $this->session->status();
         $this->assertTrue($status);
-        $fakerString = new FakerString();
-        $token = $fakerString->generate_token(60);
+        $example = 'example';
         $expiration =  time();
-        $this->session->add_expiration_items(['token' => $token], $expiration);
-        $result = $this->session->get_item_with_expiration('token');
+        $this->session->add_expiration_items(['example' => $example], $expiration);
+        $result = $this->session->get_item_with_expiration('example');
         $this->assertEquals('this value is expired!', $result);
     }
 
@@ -128,11 +126,38 @@ class SessionTest extends TestCase
         $this->session->start();
         $status = $this->session->status();
         $this->assertTrue($status);
-        $fakerString = new FakerString();
-        $token = $fakerString->generate_token(60);
+        $example = 'example';
         $expiration =  time() + (10 * 60);
-        $this->session->add_expiration_items(['token' => $token], $expiration);
-        $result = $this->session->get_item_with_expiration('token');
-        $this->assertEquals($result, $token);
+        $this->session->add_expiration_items(['example' => $example], $expiration);
+        $result = $this->session->get_item_with_expiration('example');
+        $this->assertEquals($result, $example);
+    }
+
+    /** @test */
+    public function clear_expired_items()
+    {
+        $this->session->start();
+        $status = $this->session->status();
+        $this->assertTrue($status);
+        $example = 'example';
+        $example2 = 'example2';
+        $example3 = 'example3';
+        $example4 = 'example4';
+        $example5 = 'example5';
+        $expiration =  time();
+        $expiration1 =  time() + (24*60*60);
+        $this->session->add_expiration_items([
+            'example' => $example,
+            'example2' => $example2,
+            'example3' => $example3,
+            'example4' => $example4
+        ], $expiration);
+        $this->session->add_expiration_items([
+            'example5' => $example5
+        ], $expiration1);
+        $notExpiredItem = $this->session->get_item_with_expiration('example5');
+        $result = $this->session->clear_expired_items();
+        $this->assertEquals('session cleared from expired data', $result);
+        $this->assertEquals('example5', $notExpiredItem);
     }
 }

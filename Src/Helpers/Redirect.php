@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Helpers;
+namespace Wordpress\PluginName\Helpers;
 
-use Wordpress\Support\Server\Server;
+use Wordpress\PluginName\Support\Server\Server;
 
 class Redirect
 {

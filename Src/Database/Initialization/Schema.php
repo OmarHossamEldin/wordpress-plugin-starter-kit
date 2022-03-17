@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Database\Initialization;
+namespace Wordpress\PluginName\Database\Initialization;
 
-class Schema 
+class Schema
 {
     private static function get_db_connect(): Connection
     {
@@ -21,11 +21,11 @@ class Schema
                 ($columns) $engine
         QUERY;
 
-        self::get_db_connect()->getDb()->query($query);
+        self::get_db_connect()->get_db()->query($query);
     }
 
     public static function dropIfExists(String $tableName)
     {
-        self::get_db_connect()->getDb()->query("DROP TABLE IF EXISTS $tableName");
+        self::get_db_connect()->get_db()->query("DROP TABLE IF EXISTS $tableName");
     }
 }

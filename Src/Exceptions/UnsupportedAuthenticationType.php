@@ -1,16 +1,10 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
 
-class UnsupportedAuthenticationType extends \Exception
+class UnsupportedAuthenticationType extends ExceptionHandler
 {
-    protected $message = "Unsupported Authentication Type";
-    
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
+    protected $message = "Unsupported Authentication Type"; 
 }

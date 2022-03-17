@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress\Support\Facades\Http;
+namespace Wordpress\PluginName\Support\Facades\Http;
 
 class Header
 {

@@ -1,13 +1,19 @@
 <?php
 
-namespace Wordpress\Support\Facades\Server;
+namespace Wordpress\PluginName\Support\Facades\Server;
 
-use Wordpress\Helpers\ArrayValidator;
+use Wordpress\PluginName\Helpers\ArrayValidator;
 
 class Session
 {
+    /**
+     * session status
+     *
+     * @var boolean
+     */
     private bool $isStarted = false;
-
+    
+    
     public function status(): bool
     {
         return $this->isStarted;
@@ -65,17 +71,31 @@ class Session
         $item = $this->get_items($key);
         $time = time();
         if (!!$item) {
-            $result = $item['token']['expiration'] <=> $time;
+            $result = $item[$key]['expiration'] <=> $time;
             if (($result === 0) || ($result === -1)) {
                 return 'this value is expired!';
             }
             if ($result === 1) {
-                return $item['token']['value'];
+                return $item[$key]['value'];
             }
         }
     }
 
-    public function get_session(): array
+    public function clear_expired_items(): string
+    {
+        $time = time();
+        foreach($_SESSION as $key => $item){
+            if(isset($_SESSION[$key]['expiration'])){
+                $result = $_SESSION[$key]['expiration'] <=> $time;
+                if (($result === 0) || ($result === -1)) {
+                    $this->remove_items($key);
+                }
+            }
+        }
+        return 'session cleared from expired data';
+    }
+
+    public function get_session_data(): array
     {
         return $_SESSION;
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Support\Facades\Validations;
+namespace Wordpress\PluginName\Support\Facades\Validations;
 
-use Wordpress\Support\Facades\Localization\Lang;
+use Wordpress\PluginName\Support\Facades\Localization\Lang;
 
 class ValidationMessage
 {

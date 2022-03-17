@@ -1,16 +1,10 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
 
-class UnsupportedRequestType extends \Exception
+class UnsupportedRequestType extends ExceptionHandler
 {
-    protected $message = "Unsupported Request Type";
-
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
+    protected $message = "Unsupported Request Type";   
 }

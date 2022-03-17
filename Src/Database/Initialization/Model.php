@@ -1,26 +1,19 @@
 <?php
 
-namespace Wordpress\Database\Initialization;
+namespace Wordpress\PluginName\Database\Initialization;
 
-use Wordpress\Exceptions\ModelInsertionException;
-use Wordpress\Support\Facades\Http\Request;
-use Wordpress\Support\DateTime\WpCarbon;
-use Wordpress\Helpers\ArrayValidator;
+use Wordpress\PluginName\Exceptions\ModelInsertionException;
+use Wordpress\PluginName\Support\Facades\Http\Request;
+use Wordpress\PluginName\Support\DateTime\WpCarbon;
+use Wordpress\PluginName\Helpers\ArrayValidator;
 
 abstract class Model extends Connection
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $request = new Request();
-        $data = $request->get_route_params();
-        if (!!$data) {
-            $data = $this->first($data['id']);
-            if (!!$data) {
-                $this->set_query_result($data);
-            }
-        }
-    }
+    /**
+     * database connection
+     */
+    protected $db;
+
     /**
      * table name $table
      */
@@ -63,6 +56,21 @@ abstract class Model extends Connection
      * @var string
      */
     private $dataResult = '';
+
+    public function __construct()
+    {
+        $connection = new Connection();
+        $this->db = $connection->get_db();
+
+        $request = new Request();
+        $data = $request->get_route_params();
+        if (!!$data) {
+            $data = $this->first($data['id']);
+            if (!!$data) {
+                $this->set_query_result($data);
+            }
+        }
+    }
 
     public function set_query_result($data): self
     {

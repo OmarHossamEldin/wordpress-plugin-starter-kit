@@ -1,16 +1,10 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
 
-class RouteNotFoundException extends \Exception
+class RouteNotFoundException extends ExceptionHandler
 {
     protected $message = "This route is not found";
-    
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
 }

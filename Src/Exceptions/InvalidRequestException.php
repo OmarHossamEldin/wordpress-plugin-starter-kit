@@ -1,16 +1,11 @@
 <?php
 
-namespace Wordpress\Exceptions;
+namespace Wordpress\PluginName\Exceptions;
 
-use Wordpress\Support\Debug\Debugger;
+use Wordpress\PluginName\Support\Facades\Exception\ExceptionHandler;
 
-class InvalidRequestException extends \Exception
+class InvalidRequestException extends ExceptionHandler
 {
     protected $message = "this request is not found";
-    
-    public function __construct()
-    {
-        $debugger = new Debugger();
-        $debugger->log($this->message);
-    }
+  
 }

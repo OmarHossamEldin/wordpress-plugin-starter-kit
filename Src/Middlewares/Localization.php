@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Middlewares;
+namespace Wordpress\PluginName\Middlewares;
 
-use Wordpress\Support\Facades\Localization\Translate;
+use Wordpress\PluginName\Support\Facades\Localization\Translate;
 
 class Localization
 {

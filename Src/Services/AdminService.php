@@ -1,9 +1,9 @@
 <?php
 
-namespace Wordpress\Services;
+namespace Wordpress\PluginName\Services;
 
-use Wordpress\Support\Facades\Router\Route;
-use Wordpress\Support\Facades\Template\Asset;
+use Wordpress\PluginName\Support\Facades\Router\Route;
+use Wordpress\PluginName\Support\Facades\Template\Asset;
 
 class AdminService
 {
@@ -18,8 +18,7 @@ class AdminService
                 'posts',
                 'manage_options',
                 'posts',
-                fn () =>
-                Route::execute('PostsController@index'),
+                fn () => Route::execute('PostsController@index'),
                 'dashicons-welcome-write-blog',
                 110
             );

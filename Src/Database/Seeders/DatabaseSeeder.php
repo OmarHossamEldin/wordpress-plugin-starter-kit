@@ -1,13 +1,15 @@
 <?php
 
-namespace Wordpress\Database\Seeders;
+namespace Wordpress\PluginName\Database\Seeders;
 
+use Wordpress\PluginName\Database\Initialization\Seeder;
 
-class DatabaseSeeder
+class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $postTableSeeder = new PostsTableSeeder();
-        $postTableSeeder->create();
+        $this->call([
+            PostsTableSeeder::class
+        ]);
     }
 }

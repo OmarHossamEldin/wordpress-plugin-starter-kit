@@ -1,8 +1,8 @@
 <?php
 
-namespace Wordpress\Models;
+namespace Wordpress\PluginName\Models;
 
-use Wordpress\Database\Initialization\Model;
+use Wordpress\PluginName\Database\Initialization\Model;
 
 /**
  * used for creating dynamic pages for the wordpress links
