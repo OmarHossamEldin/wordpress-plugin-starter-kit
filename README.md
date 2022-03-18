@@ -30,7 +30,7 @@
 
 ## Getting Started
 
-> $ composer create-project reneknox/wordpress pluginName
+> composer create-project reneknox/wordpress pluginName
 
 ## Directory Structure
 
