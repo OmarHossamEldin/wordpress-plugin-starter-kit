@@ -30,7 +30,7 @@
 
 ## Getting Started
 
-> composer create-project -s dev reneknox/wordpress
+> $ composer create-project reneknox/wordpress yourPackageName
 
 ## Directory Structure
 
