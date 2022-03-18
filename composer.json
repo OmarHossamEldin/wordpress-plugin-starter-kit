@@ -10,7 +10,7 @@
     "description": "starter kit following mvc pattern for wordpress",
     "license": "MIT", 
     "require": {
-        "php": "^7.4"
+        "php": ">=7.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
