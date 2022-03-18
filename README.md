@@ -28,6 +28,10 @@
 1. php >= 7.4
 1. composer
 
+## Getting Started
+
+> composer create-project -s dev reneknox/wordpress
+
 ## Directory Structure
 
 ```
@@ -96,10 +100,6 @@
      - will make his models which is refer to the table and columns he need to query on it the model have to extend the model class he can use it on created table by the migration or on existing table of the project.
 - Request directory
   - Here we create request validation rules
-
-## Getting Started
-
-> composer create-project -s dev reneknox/wordpress
 
 ## Authors
 
