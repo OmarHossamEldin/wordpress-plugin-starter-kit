@@ -1,48 +1,42 @@
 {
-    "name": "reneknox/wordpress",
-    "type": "project",
-    "homepage": "https://github.com/OmarHossamEldin/wordpress-starter-kit",
-    "keywords": [
-        "plugin",
-        "wordpress",
-        "mvc"
-    ],
-    "description": "starter kit following mvc pattern for wordpress",
-    "license": "MIT", 
-    "require": {
-        "php": ">=7.4"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "Wordpress\\PluginName\\": "Src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-	    "test": "vendor/bin/phpunit"
-    },
-    "prefer-stable": true,
-    "minimum-stability": "dev",
-    "repositories": [
-	    {
-            "type": "vcs",
-            "url": "https://github.com/OmarHossamEldin/wordpress-starter-kit"
-        }
-    ],
-    "authors": [
-        {
-            "name": "Omar Hossam eldin",
-            "email": "okandil273@gmail.com",
-            "homepage": "https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/",
-            "role": "software-engineer"
-        }
-    ]
-    
+  "name": "reneknox/wordpress",
+  "type": "project",
+  "homepage": "https://github.com/OmarHossamEldin/wordpress-starter-kit",
+  "keywords": [
+    "plugin",
+    "wordpress",
+    "mvc",
+    "build-scalable-plugins"
+  ],
+  "description": "starter kit following mvc pattern for wordpress",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wordpress\\PluginName\\": "Src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Omar Hossam eldin",
+      "email": "okandil273@gmail.com",
+      "homepage": "https://www.linkedin.com/in/omar-hossameldin-kandil-74633a1bb/",
+      "role": "software-engineer"
+    }
+  ]
 }
