@@ -26,7 +26,7 @@
         }
     },
     "scripts": {
-	    "test": "php vendor/bin/phpunit"
+	    "test": "vendor/bin/phpunit"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
